@@ -1,0 +1,338 @@
+{
+  "title": "Mind.capital Simulator",
+  "@title": {
+    "description": "Título de la aplicación",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appBarButton": "¡Alta Gratis!",
+  "@appBarButton": {
+    "description": "Título del botón en appBar",
+    "type": "text",
+    "placeholders": {}
+  },
+  "simulator": "Simulador",
+  "@simulator": {
+    "description": "Texto Simulador",
+    "type": "text",
+    "placeholders": {}
+  },
+  "trackRecord": "Historial",
+  "@trackRecord": {
+    "description": "Historial text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "Acerca de",
+  "@about": {
+    "description": "Texto Acerca de",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compContribution": "Beneficios reinvertidos",
+  "@compContribution": {
+    "description": "Texto Beneficios reinvertidos",
+    "type": "text",
+    "placeholders": {}
+  },
+  "profit": "Beneficio",
+  "@profit": {
+    "description": "Texto Beneficio",
+    "type": "text",
+    "placeholders": {}
+  },
+  "months": "Meses",
+  "@months": {
+    "description": "Texto Meses",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reset": "Reset",
+  "@reset": {
+    "description": "Reset text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "initContribution": "Aportación Inicial",
+  "@initContribution": {
+    "description": "Texto Aportación Inicial",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referTotal": "Aportación Total Referidos",
+  "@referTotal": {
+    "description": "Aportación Total Referidos text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referProfit": "Beneficios Referidos",
+  "@referProfit": {
+    "description": "Beneficios Referidos text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel1": "Nivel 1",
+  "@referLevel1": {
+    "description": "Nivel 1 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel2": "Nivel 2",
+  "@referLevel2": {
+    "description": "Nivel 2 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel3": "Nivel 3",
+  "@referLevel3": {
+    "description": "Nivel 3 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel4": "Nivel 4",
+  "@referLevel4": {
+    "description": "Nivel 4 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel5": "Nivel 5",
+  "@referLevel5": {
+    "description": "Nivel 5 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel6": "Nivel 6",
+  "@referLevel6": {
+    "description": "Nivel 6 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel7": "Nivel 7",
+  "@referLevel7": {
+    "description": "Nivel 7 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel8": "Nivel 8",
+  "@referLevel8": {
+    "description": "Nivel 8 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel9": "Nivel 9",
+  "@referLevel9": {
+    "description": "Nivel 9 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel10": "Nivel 10",
+  "@referLevel10": {
+    "description": "Nivel 10 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minContribution": "Aportación mínima",
+  "@minContribution": {
+    "description": "Texto Aportación mínima",
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxContribution": "Aportación máxima",
+  "@maxContribution": {
+    "description": "Texto Aportación máxima",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compInterest": "Interés Compuesto",
+  "@compInterest": {
+    "description": "Texto Interés Compuesto",
+    "type": "text",
+    "placeholders": {}
+  },
+  "benefitsAvailable": "Beneficios",
+  "@benefitsAvailable": {
+    "description": "Texto Beneficios",
+    "type": "text",
+    "placeholders": {}
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Total text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "platform": "Plataforma",
+  "@platform": {
+    "description": "Plataforma text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "daily": "Diario",
+  "@daily": {
+    "description": "Diario text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "weekly": "Semanal",
+  "@weekly": {
+    "description": "Semanal text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "monthly": "Mensual",
+  "@monthly": {
+    "description": "Mensual text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "infFile": "Dosier informativo",
+  "@infFile": {
+    "description": "Dosier informativo text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "faq": "FAQ",
+  "@faq": {
+    "description": "FAQ text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "bigroiResume": "BigRoi Club nace como una plataforma de conocimiento y promoción de los mejores negocios e inversiones de internet. BigRoi Club ofrecerá a sus socios las herramientas, soportes y medios de comunicación necesarios para informar y comunicarse con todos sus afiliados.\nEsta es una de las muchas herramientas que BigRoi Club confeccionará y entregará a todos sus socios.\nEsto no ha hecho más que empezar, si quieres seguir al tanto de las actualizaciones y nuevas noticias sobre este gran proyecto siguenos a través de nuestras redes sociales y no te pierdas nada.",
+  "@bigroiResume": {
+    "description": "BigRoi Resume text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "goFacebook": "Ir a Facebook",
+  "@goFacebook": {
+    "description": "Ir a Facebook text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dayAverage": "Media Diaria",
+  "@dayAverage": {
+    "description": "Media Diaria text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "weekAverage": "Media Semanal",
+  "@weekAverage": {
+    "description": "Media Semanal text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "monthAverage": "Media Mensual",
+  "@monthAverage": {
+    "description": "Media Mensual text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "januaryShort": "ENE",
+  "@januaryShort": {
+    "description": "ENE text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "februaryShort": "FEB",
+  "@februaryShort": {
+    "description": "FEB text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "marchShort": "MAR",
+  "@marchShort": {
+    "description": "MAR text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "aprilShort": "ABR",
+  "@aprilShort": {
+    "description": "ABR text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mayShort": "MAY",
+  "@mayShort": {
+    "description": "MAY text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "juneShort": "JUN",
+  "@juneShort": {
+    "description": "JUN text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "julyShort": "JUL",
+  "@julyShort": {
+    "description": "JUL text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "augustShort": "AGO",
+  "@augustShort": {
+    "description": "AGO text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "septemberShort": "SEP",
+  "@septemberShort": {
+    "description": "SEP text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "octoberShort": "OCT",
+  "@octoberShort": {
+    "description": "OCT text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "novemberShort": "NOV",
+  "@novemberShort": {
+    "description": "NOV text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "decemberShort": "DIC",
+  "@decemberShort": {
+    "description": "DIC text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "infoPlatform": "35% de beneficio\n para Mind.capital",
+  "@infoPlatform": {
+    "description": "infoPlatform text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "infoInteresCompuesto": "Reinvertir beneficios",
+  "@infoInteresCompuesto": {
+    "description": "infoInteresCompuesto text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ofWhich": "de los cuales",
+  "@ofWhich": {
+    "description": "de los cuales text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "back": "Volver",
+  "@back": {
+    "description": "volber text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dosierUrl": "https://mind.capital/es/attach/mind-capital.pdf",
+  "@dosierUrl": {
+    "description": "dosierUrl text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "faqUrl": "https://mind.capital/es/attach/mind-capital-faq.pdf",
+  "@faqUrl": {
+    "description": "faqUrl text",
+    "type": "text",
+    "placeholders": {}
+  }
+}

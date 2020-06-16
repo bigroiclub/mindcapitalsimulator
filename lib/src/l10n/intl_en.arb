@@ -1,0 +1,338 @@
+{
+  "title": "Mind.capital Simulator",
+  "@title": {
+    "description": "Title for the App application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appBarButton": "Free Registration!",
+  "@appBarButton": {
+    "description": "Title for appBar Button",
+    "type": "text",
+    "placeholders": {}
+  },
+  "simulator": "Simulator",
+  "@simulator": {
+    "description": "Simulator text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "trackRecord": "Track Record",
+  "@trackRecord": {
+    "description": "Track Record text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "About",
+  "@about": {
+    "description": "About text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compContribution": "Composite Contribution",
+  "@compContribution": {
+    "description": "Composite Contribution text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "profit": "Profit",
+  "@profit": {
+    "description": "Profit text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "months": "Months",
+  "@months": {
+    "description": "Months text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "reset": "Reset",
+  "@reset": {
+    "description": "Reset text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "initContribution": "Initial Contribution",
+  "@initContribution": {
+    "description": "Initial Contribution text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referTotal": "Total Contribution Referals",
+  "@referTotal": {
+    "description": "Total Contribution Referals text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referProfit": "Referals Profit",
+  "@referProfit": {
+    "description": "Total Profit Referals text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel1": "Level 1",
+  "@referLevel1": {
+    "description": "Level 1 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel2": "Level 2",
+  "@referLevel2": {
+    "description": "Level 2 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel3": "Level 3",
+  "@referLevel3": {
+    "description": "Level 3 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel4": "Level 4",
+  "@referLevel4": {
+    "description": "Level 4 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel5": "Level 5",
+  "@referLevel5": {
+    "description": "Level 5 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel6": "Level 6",
+  "@referLevel6": {
+    "description": "Level 6 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel7": "Level 7",
+  "@referLevel7": {
+    "description": "Level 7 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel8": "Level 8",
+  "@referLevel8": {
+    "description": "Level 8 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel9": "Level 9",
+  "@referLevel9": {
+    "description": "Level 9 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "referLevel10": "Level 10",
+  "@referLevel10": {
+    "description": "Level 10 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minContribution": "Minimum contribution",
+  "@minContribution": {
+    "description": "Minimum contribution text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxContribution": "Maximum contribution",
+  "@maxContribution": {
+    "description": "Maximum contribution text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compInterest": "Composite Interest",
+  "@compInterest": {
+    "description": "Composite Interest text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "benefitsAvailable": "Benefits Available",
+  "@benefitsAvailable": {
+    "description": "Benefits Available text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Total text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "platform": "Platform Profit",
+  "@platform": {
+    "description": "Platform text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "daily": "Daily",
+  "@daily": {
+    "description": "Daily text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "weekly": "Weekly",
+  "@weekly": {
+    "description": "Weekly text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "monthly": "Monthly",
+  "@monthly": {
+    "description": "Monthly text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "infFile": "Information file",
+  "@infFile": {
+    "description": "Information file. text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "faq": "FAQ",
+  "@faq": {
+    "description": "FAQ text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "bigroiResume": "BigRoi Club was born as a platform of knowledge and promotion of the best businesses and investments on the Internet. BigRoi Club will offer to its members the tools, supports and media needed to inform and communicate with all its members.\nThis is one of the many tools that BigRoi Club will make and give to all its members.\n  This is just the beginning, if you want to keep up with the updates and news about this great project follow us through our social networks and do not miss anything.",
+  "@bigroiResume": {
+    "description": "BigRoi Resume text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "goFacebook": "Go to Facebook",
+  "@goFacebook": {
+    "description": "Go to Facebook text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dayAverage": "Day Historical Average",
+  "@dayAverage": {
+    "description": "Week Historical Average text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "weekAverage": "Week Historical Average",
+  "@weekAverage": {
+    "description": "Week Historical Average text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "monthAverage": "Month Historical Average",
+  "@monthAverage": {
+    "description": "Month Historical Average text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "januaryShort": "JAN",
+  "@januaryShort": {
+    "description": "JAN text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "februaryShort": "FEB",
+  "@februaryShort": {
+    "description": "FEB text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "marchShort": "MAR",
+  "@marchShort": {
+    "description": "MAR text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "aprilShort": "APR",
+  "@aprilShort": {
+    "description": "APR text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "mayShort": "MAY",
+  "@mayShort": {
+    "description": "MAY text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "juneShort": "JUN",
+  "@juneShort": {
+    "description": "JUN text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "julyShort": "JUL",
+  "@julyShort": {
+    "description": "JUL text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "augustShort": "AUG",
+  "@augustShort": {
+    "description": "AUG text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "septemberShort": "SEP",
+  "@septemberShort": {
+    "description": "SEP text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "octoberShort": "OCT",
+  "@octoberShort": {
+    "description": "OCT text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "novemberShort": "NOV",
+  "@novemberShort": {
+    "description": "NOV text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "decemberShort": "DEC",
+  "@decemberShort": {
+    "description": "DEC text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "infoPlatform": "35% profit for Mind.capital",
+  "@infoPlatform": {
+    "description": "infoPlatform text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "infoInteresCompuesto": "Reinvest profit",
+  "@infoInteresCompuesto": {
+    "description": "infoInteresCompuesto text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ofWhich": "of which",
+  "@ofWhich": {
+    "description": "ofWhich text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Back text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dosierUrl": "https://mind.capital/en/attach/mind-capital.pdf",
+  "@dosierUrl": {
+    "description": "dosierUrl text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "faqUrl": "https://mind.capital/en/attach/mind-capital-faq.pdf",
+  "@faqUrl": {
+    "description": "faqUrl text",
+    "type": "text",
+    "placeholders": {}
+  }
+}

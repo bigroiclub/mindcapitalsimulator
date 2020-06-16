@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "1071797739628",
+    "firebase_url": "https://mind-capital-simulator.firebaseio.com",
+    "project_id": "mind-capital-simulator",
+    "storage_bucket": "mind-capital-simulator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071797739628:android:f8d607576949d83e6fb849",
+        "android_client_info": {
+          "package_name": "club.bigroi.mindcapitalsimulator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071797739628-tvutjs66qlrpmadcoofjfnh1hqcro2dt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "club.bigroi.mindcapitalsimulator",
+            "certificate_hash": "3adb33c713393817e8c1a52b0450da7f65ae1be9"
+          }
+        },
+        {
+          "client_id": "1071797739628-eqkvuaa68gdjvpt7hlhsbjgho01dqg54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrANyb9zPr6oXayr__3ARVIRRyM3mvp6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071797739628-eqkvuaa68gdjvpt7hlhsbjgho01dqg54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071797739628:android:057891697699594d6fb849",
+        "android_client_info": {
+          "package_name": "com.muroxlabs.mindcapitalsimulator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071797739628-kmkji2ejlbvkp81vqq9gj42tqhbldjb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.muroxlabs.mindcapitalsimulator",
+            "certificate_hash": "3adb33c713393817e8c1a52b0450da7f65ae1be9"
+          }
+        },
+        {
+          "client_id": "1071797739628-eqkvuaa68gdjvpt7hlhsbjgho01dqg54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrANyb9zPr6oXayr__3ARVIRRyM3mvp6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071797739628-eqkvuaa68gdjvpt7hlhsbjgho01dqg54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
