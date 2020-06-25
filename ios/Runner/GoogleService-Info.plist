@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1071797739628-t8jh7ho0k3rpj176v244ec10t97vf5dh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1071797739628-t8jh7ho0k3rpj176v244ec10t97vf5dh</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1071797739628-tvutjs66qlrpmadcoofjfnh1hqcro2dt.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAdLgfCUbN3GqGPNg7MBYuA3nEaBDanU8o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1071797739628</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>club.bigroi.mindcapitalsimulator</string>
+	<key>PROJECT_ID</key>
+	<string>mind-capital-simulator</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mind-capital-simulator.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1071797739628:ios:14651b5785aa551f6fb849</string>
+	<key>DATABASE_URL</key>
+	<string>https://mind-capital-simulator.firebaseio.com</string>
+</dict>
+</plist>
