@@ -238,19 +238,24 @@ class SimulatorResultWidget extends StatelessWidget {
   }
 
   _backButton(BuildContext context, bool withCalcButton) {
-    return Visibility(
-      visible: withCalcButton,
-      child: Container(
-        alignment: Alignment.topLeft,
-        padding: EdgeInsets.only(right: 95),
-        child: IconButton(
-          //child: Text(AppLocalizations.of(context).back),
-          icon: Icon(
-            FontAwesomeIcons.arrowLeft,
-            color: Colors.blue,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Visibility(
+        visible: withCalcButton,
+        child: Container(
+          alignment: Alignment.topLeft,
+          padding: EdgeInsets.only(right: 95),
+          child: IconButton(
+            //child: Text(AppLocalizations.of(context).back),
+            icon: Icon(
+              FontAwesomeIcons.arrowLeft,
+              color: Colors.blue,
+            ),
+            onPressed: () =>
+                BlocProvider.of<HomeBloc>(context).add(CalculateBackEvent()),
           ),
-          onPressed: () =>
-              BlocProvider.of<HomeBloc>(context).add(CalculateBackEvent()),
         ),
       ),
     );
@@ -402,12 +407,31 @@ class SimulatorResultWidget extends StatelessWidget {
 
   List<PieChartSectionData> showingSections(
       List<PieSectionData> pieSectionDataList) {
-    return pieSectionDataList
-        .map<PieChartSectionData>((PieSectionData pieSectionData) {
+    // return pieSectionDataList
+    //     .map<PieChartSectionData>((PieSectionData pieSectionData) {
+    //   final isTouched = pieSectionData.isTouched;
+    //   final double fontSize = isTouched ? 25 : 16;
+    //   final double radius = isTouched ? 60 : 50;
+    //   return PieChartSectionData(
+    //     color: pieSectionData.color,
+    //     value: pieSectionData.value,
+    //     title: pieSectionData.title,
+    //     radius: radius,
+    //     titleStyle: TextStyle(
+    //         fontSize: fontSize,
+    //         fontWeight: FontWeight.bold,
+    //         color: Colors.black),
+    //   );
+    // }).toList();
+
+    List<PieChartSectionData> returnList = [];
+
+    for (PieSectionData pieSectionData in pieSectionDataList) {
       final isTouched = pieSectionData.isTouched;
       final double fontSize = isTouched ? 25 : 16;
       final double radius = isTouched ? 60 : 50;
-      return PieChartSectionData(
+
+      returnList.add(PieChartSectionData(
         color: pieSectionData.color,
         value: pieSectionData.value,
         title: pieSectionData.title,
@@ -416,8 +440,9 @@ class SimulatorResultWidget extends StatelessWidget {
             fontSize: fontSize,
             fontWeight: FontWeight.bold,
             color: Colors.black),
-      );
-    }).toList();
+      ));
+    }
+    return returnList;
   }
 }
 
