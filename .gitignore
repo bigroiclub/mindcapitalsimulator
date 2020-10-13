@@ -74,4 +74,4 @@
 
 
 # ignore build folder
-/build/
+**/build/**
