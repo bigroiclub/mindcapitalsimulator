@@ -46,7 +46,7 @@
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 
- # file for flutter when the module is integrated into an existing project, the .ios directory
+# file for flutter when the module is integrated into an existing project, the .ios directory
 **/.ios/**/*.mode1v3
 **/.ios/**/*.mode2v3
 **/.ios/**/*.moved-aside
@@ -71,3 +71,7 @@
 **/.ios/Flutter/flutter_assets/
 **/.ios/ServiceDefinitions.json
 **/.ios/Runner/GeneratedPluginRegistrant.*
+
+
+# ignore build folder
+**/build/
