@@ -64,6 +64,11 @@ class FlagInteresCompuestoEvent extends CalculationEvent{
   String toString() => 'FlagInteresCompuestoEvent Event';
 }
 
+class FlagProSettingsEvent extends CalculationEvent{
+   @override
+  String toString() => 'FlagProSettingsEvent Event';
+}
+
 class CambioMesesCounterEvent extends CalculationEvent{
   int mesesCounter;
 
@@ -92,4 +97,12 @@ class ExpandPanelEvent extends CalculationEvent{
   ExpandPanelEvent(this.isExpanded);
   @override
   String toString() => 'ExpandPanelEvent Event';
+}
+
+class CambioRetiroEvent extends CalculationEvent{
+  final double retiro;
+
+  CambioRetiroEvent(this.retiro);
+  @override
+  String toString() => 'CambioRetiroEvent Event';
 }

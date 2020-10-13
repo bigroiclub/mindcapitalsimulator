@@ -29,7 +29,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compContribution": "Beneficios reinvertidos",
+  "compContribution": "Reinversión",
   "@compContribution": {
     "description": "Texto Beneficios reinvertidos",
     "type": "text",
@@ -305,7 +305,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "infoInteresCompuesto": "Reinvertir beneficios",
+  "infoInteresCompuesto": "Reinvertir",
   "@infoInteresCompuesto": {
     "description": "infoInteresCompuesto text",
     "type": "text",
@@ -332,6 +332,102 @@
   "faqUrl": "https://mind.capital/es/attach/mind-capital-faq.pdf",
   "@faqUrl": {
     "description": "faqUrl text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateTitle": "Valora esta app",
+  "@rateTitle": {
+    "description": "rateTitle text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateMessage": "Si te gusta esta app, por favor dedica un poco de tu tiempo en valorarla!\n Esto realmente nos ayuda y no te tomará más de un minuto.",
+  "@rateMessage": {
+    "description": "rateMessage text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateButton": "VALORAR",
+  "@rateButton": {
+    "description": "rateButton text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateNoButton": "NO GRACIAS",
+  "@rateNoButton": {
+    "description": "rateNoButton text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateLaterButton": "MÁS TARDE",
+  "@rateLaterButton": {
+    "description": "rateLaterButton text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "withdraw": "Retiro",
+  "@withdraw": {
+    "description": "Withdraw text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "simulate": "Simular",
+  "@simulate": {
+    "description": "simulate text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "grossTotal": "Total bruto",
+  "@grossTotal": {
+    "description": "Total bruto text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "proSettings": "Configuración avanzada",
+  "@proSettings": {
+    "description": "proSettings text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minWithdraw": "Retiro mínimo",
+  "@minWithdraw": {
+    "description": "minWithdraw text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "description": "email text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compliance": "La simulación esta disponible únicamente para socios  de BigRoi Club. Ser socio es tan fácil como darse de alta gratis en Mind.capital a través del botón de arriba a la derecha.",
+  "@compliance": {
+    "description": "compliance text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "Enviar",
+  "@send": {
+    "description": "send text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "complianceLoginSended": "Email enviado",
+  "@complianceLoginSended": {
+    "description": "complianceLoginSended text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Iniciar sesión",
+  "@login": {
+    "description": "login text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginFail": "Correo no autorizado. Contacta con administrador.",
+  "@loginFail": {
+    "description": "loginFail text",
     "type": "text",
     "placeholders": {}
   }

@@ -19,7 +19,7 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
   double _gananciaMax = 1.5;
   double _porcGanancias = 1.0;
   double _aportacion = 0;
-  double _aportacionFutura = 100;
+  double _aportacionFutura = 0.0;
   TipoGanancias _tipoGanancia = TipoGanancias.diaria;
   bool _infoPlatform = false;
   bool _infoIntCompuesto = false;
@@ -27,6 +27,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
   bool _infoProfitButton = false;
   int _mesesCounter = 1;
   bool _isExpanded = false;
+  bool _showRetiro = false;
+  double _retiro = 0.0;
+  double _retiroTotal = 0.0;
+  bool _isWithdrawExecuted = false;
+  bool _overflow = false;
+  bool _showPro = false;
 
   @override
   CalculationState get initialState {
@@ -49,7 +55,10 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
         infoProfitButton: this._infoProfitButton,
         interesCompuestoFlag: this._interesCompuestoFlag,
         mesesCounter: this._mesesCounter,
-        isExpanded: _isExpanded);
+        isExpanded: _isExpanded,
+        retiro: _retiro,
+        retiroTotal: _retiroTotal,
+        overflow: _overflow);
   }
 
   @override
@@ -91,7 +100,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
             infoPlatform: _infoPlatform,
             infoIntCompuesto: _infoIntCompuesto,
             infoProfitButton: _infoProfitButton,
-            isExpanded: _isExpanded);
+            isExpanded: _isExpanded,
+            showRetiro: _showRetiro,
+            retiro: _retiro,
+            retiroTotal: _retiroTotal,
+            overflow: _overflow,
+            showPro: _showPro);
         // }
       } catch (error) {
         yield error is CalculationStateError
@@ -165,7 +179,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
             infoPlatform: _infoPlatform,
             infoIntCompuesto: _infoIntCompuesto,
             infoProfitButton: _infoProfitButton,
-            isExpanded: _isExpanded);
+            isExpanded: _isExpanded,
+            showRetiro: _showRetiro,
+            retiro: _retiro,
+            retiroTotal: _retiroTotal,
+            overflow: _overflow,
+            showPro: _showPro);
         // }
       } catch (error) {
         yield error is CalculationStateError
@@ -201,7 +220,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is CambioInfoIntCompuestoEvent) {
       this._infoIntCompuesto = !this._infoIntCompuesto;
       yield ReSimulationState(
@@ -231,7 +255,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is CambioInfoProfitEvent) {
       this._infoProfitButton = !this._infoProfitButton;
       yield ReSimulationState(
@@ -261,28 +290,37 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is TipoGananciaEvent) {
       this._tipoGanancia = event.tipoGanancia;
+      this._showRetiro = false;
 
       switch (this._tipoGanancia) {
         case TipoGanancias.semanal:
-          this._porcGanancias = 5;
+          this._porcGanancias = 6.0;
           _gananciaMin = 2.5;
           _gananciaMax = 7.5;
-
+          _retiro = 0.0;
           break;
 
         case TipoGanancias.mensual:
-          this._porcGanancias = 15;
+          this._porcGanancias = 20.0;
           _gananciaMin = 10;
           _gananciaMax = 30;
+
+          _showRetiro = true;
 
           break;
         default:
           this._porcGanancias = 1.0;
           _gananciaMin = 0.5;
           _gananciaMax = 1.5;
+          _retiro = 0.0;
       }
       _resetBeneficios();
       _calculaBeneficios(this._tipoGanancia);
@@ -313,7 +351,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is PorcGnanaciasEvent) {
       this._porcGanancias = event.porcGanancias;
       _resetBeneficios();
@@ -345,7 +388,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is FlagInteresCompuestoEvent) {
       _interesCompuestoFlag = !_interesCompuestoFlag;
       _resetBeneficios();
@@ -377,9 +425,15 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is CambioMesesCounterEvent) {
       _mesesCounter = event.mesesCounter;
+      _isWithdrawExecuted = false;
       _resetBeneficios();
       _calculaBeneficios(_tipoGanancia);
       yield ReSimulationState(
@@ -409,7 +463,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is ResetBeneficiosEvent) {
       _resetBeneficios();
       yield ReSimulationState(
@@ -439,7 +498,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is CopyFutureContributionEvent) {
       _aportacion = _aportacionFutura;
       _resetBeneficios();
@@ -471,7 +535,12 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     } else if (event is ExpandPanelEvent) {
       _isExpanded = event.isExpanded;
       yield ReSimulationState(
@@ -501,13 +570,94 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           infoPlatform: _infoPlatform,
           infoIntCompuesto: _infoIntCompuesto,
           infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded);
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
+    } else if (event is CambioRetiroEvent) {
+      _retiro = event.retiro;
+      // if (_retiro == 0.0)
+      //   _showRetiro = false;
+      // else
+      //   _showRetiro = true;
+      _resetBeneficios();
+      _calculaBeneficios(_tipoGanancia);
+      yield ReSimulationState(
+          aportacion: _aportacion,
+          aportacionFutura: _aportacionFutura,
+          beneficiosTotales: _beneficiosTotales,
+          aportacionTotalReferido: _referalManager.total,
+          referLevel1: _referalManager.level_1,
+          referLevel2: _referalManager.level_2,
+          referLevel3: _referalManager.level_3,
+          referLevel4: _referalManager.level_4,
+          referLevel5: _referalManager.level_5,
+          referLevel6: _referalManager.level_6,
+          referLevel7: _referalManager.level_7,
+          referLevel8: _referalManager.level_8,
+          referLevel9: _referalManager.level_9,
+          referLevel10: _referalManager.level_10,
+          beneficiosPlataforma: _beneficiosPlataforma,
+          beneficiosNetos: _beneficiosNetos,
+          beneficiosNetosReferidos: _beneficiosNetosReferidos,
+          porcGanancias: _porcGanancias,
+          interesCompuestoFlag: _interesCompuestoFlag,
+          mesesCounter: _mesesCounter,
+          gananciaMin: _gananciaMin,
+          gananciaMax: _gananciaMax,
+          tipoGanancias: _tipoGanancia,
+          infoPlatform: _infoPlatform,
+          infoIntCompuesto: _infoIntCompuesto,
+          infoProfitButton: _infoProfitButton,
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
+    } else if (event is FlagProSettingsEvent) {
+      _showPro = !_showPro;
+      
+      yield ReSimulationState(
+          aportacion: _aportacion,
+          aportacionFutura: _aportacionFutura,
+          beneficiosTotales: _beneficiosTotales,
+          aportacionTotalReferido: _referalManager.total,
+          referLevel1: _referalManager.level_1,
+          referLevel2: _referalManager.level_2,
+          referLevel3: _referalManager.level_3,
+          referLevel4: _referalManager.level_4,
+          referLevel5: _referalManager.level_5,
+          referLevel6: _referalManager.level_6,
+          referLevel7: _referalManager.level_7,
+          referLevel8: _referalManager.level_8,
+          referLevel9: _referalManager.level_9,
+          referLevel10: _referalManager.level_10,
+          beneficiosPlataforma: _beneficiosPlataforma,
+          beneficiosNetos: _beneficiosNetos,
+          beneficiosNetosReferidos: _beneficiosNetosReferidos,
+          porcGanancias: _porcGanancias,
+          interesCompuestoFlag: _interesCompuestoFlag,
+          mesesCounter: _mesesCounter,
+          gananciaMin: _gananciaMin,
+          gananciaMax: _gananciaMax,
+          tipoGanancias: _tipoGanancia,
+          infoPlatform: _infoPlatform,
+          infoIntCompuesto: _infoIntCompuesto,
+          infoProfitButton: _infoProfitButton,
+          isExpanded: _isExpanded,
+          showRetiro: _showRetiro,
+          retiro: _retiro,
+          retiroTotal: _retiroTotal,
+          overflow: _overflow,
+          showPro: _showPro);
     }
   }
 
   _calculaBeneficios(TipoGanancias tipoGanancias) {
     //tipoCompuesto
-    _aportacionFutura = _aportacion;
     switch (tipoGanancias) {
       case TipoGanancias.semanal:
         double porcGananciaDiaria = _porcGanancias / 5;
@@ -518,11 +668,22 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
 
       case TipoGanancias.mensual:
         //De los meses introducidos por el usuario se calculan los días hábiles
-        var diasHabiles = _mesesCounter * 20;
+        var diasHabiles = 20;
         double porcGananciaDiaria = _porcGanancias / 20;
 
-        for (var i = 0; i < diasHabiles; i++)
-          _calculaBeneficiosDiaria(porcGananciaDiaria);
+        for (var i = 0; i < _mesesCounter; i++) {
+          _isWithdrawExecuted = false;
+          for (var t = 0; t < diasHabiles; t++)
+            _calculaBeneficiosDiaria(porcGananciaDiaria);
+
+          // _beneficiosTotales = _beneficiosTotales * _mesesCounter;
+          // _beneficiosPlataforma = _beneficiosPlataforma * _mesesCounter;
+          // _beneficiosNetosReferidos = _beneficiosNetosReferidos * _mesesCounter;
+          // _beneficiosNetos = _beneficiosNetos * _mesesCounter;
+          // _retiroTotal = _retiroTotal * _mesesCounter;
+        }
+
+        // _retiroTotal = _retiroTotal * _mesesCounter;
         break;
       default:
         _calculaBeneficiosDiaria(_porcGanancias);
@@ -530,7 +691,8 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
   }
 
   _calculaBeneficiosDiaria(porcGanancias) {
-    double beneficiosTotales = _aportacionFutura * (porcGanancias / 100);
+    double beneficiosTotales =
+        (_aportacion + _aportacionFutura) * (porcGanancias / 100);
     double beneficiosPlataforma = beneficiosTotales * (PORC_PLATAFORMA / 100);
     double beneficiosNetos = beneficiosTotales * (PORC_INVERSOR / 100);
     double beneficiosNetosReferidos =
@@ -547,21 +709,68 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
         _beneficiosNetos + beneficiosNetos + beneficiosNetosReferidos;
 
     //TODO: Crear una clase InteresCompuesto que tenga en cuenta los 2 días en que no genera beneficios las nuevas aportaciones
-    if (_interesCompuestoFlag) {
-      while (out == false) {
-        if (_aportacionFutura >= MAX_APORTACION) {
-          out = true;
-        } else if (_beneficiosNetos >= 110) {
-          _beneficiosNetos = _beneficiosNetos - 10;
-          _aportacionFutura = _aportacionFutura + 10;
-        } else if (_beneficiosNetos >= 100) {
-          _beneficiosNetos = _beneficiosNetos - 100;
-          _aportacionFutura = _aportacionFutura + 100;
-        } else {
-          out = true;
+    if (_executeCompound(_interesCompuestoFlag)) {
+      if (_executeWithdraw(
+          _showRetiro, _beneficiosNetos, _retiro, _isWithdrawExecuted)) {
+        if (_showRetiro && !_isWithdrawExecuted) {
+          // Si los beneficios superan al retiro se descuenta y se empieza el interes compuesto
+          _beneficiosNetos = _beneficiosNetos - _retiro;
+          _retiroTotal = _retiroTotal + _retiro;
+          _isWithdrawExecuted = true;
+        }
+        while (out == false) {
+          if ((_aportacionFutura + _aportacion) >= MAX_APORTACION) {
+            _overflow = true;
+            out = true;
+          } else if (_beneficiosNetos >= 110) {
+            _beneficiosNetos = _beneficiosNetos - 10;
+            _aportacionFutura = _aportacionFutura + 10;
+          } else if (_beneficiosNetos >= 100) {
+            _beneficiosNetos = _beneficiosNetos - 100;
+            _aportacionFutura = _aportacionFutura + 100;
+          } else {
+            out = true;
+          }
+        }
+      }
+    } else {
+      if (_executeWithdraw(
+          _showRetiro, _beneficiosNetos, _retiro, _isWithdrawExecuted)) {
+        if (_showRetiro && !_isWithdrawExecuted) {
+          // Si los beneficios superan al retiro se descuenta
+          _beneficiosNetos = _beneficiosNetos - _retiro;
+          _retiroTotal = _retiroTotal + _retiro;
+          _isWithdrawExecuted = true;
         }
       }
     }
+
+    // print('beneficios Netos: ' + '$_beneficiosNetos');
+    // print('Aportacion Futura: ' + '$_aportacionFutura');
+  }
+
+  bool _executeCompound(bool interesCompuestoFlag) {
+    if (interesCompuestoFlag) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool _executeWithdraw(bool showRetiro, double beneficiosNetos, double retiro,
+      bool isWithdrawExecuted) {
+    if (showRetiro) {
+      // Se ha informado de un retiro
+      if (_isWithdrawExecuted)
+        return true;
+      else {
+        if (beneficiosNetos < retiro && retiro > 0.0)
+          return false;
+        else
+          return true;
+      }
+    } else
+      return true;
   }
 
   _resetBeneficios() {
@@ -570,6 +779,9 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
     _beneficiosPlataforma = 0.0;
     _beneficiosNetos = 0.0;
     _beneficiosNetosReferidos = 0.0;
+    _retiroTotal = 0.0;
+    _isWithdrawExecuted = false;
+    _overflow = false;
     // _referalManager.clear();
   }
 }

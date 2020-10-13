@@ -1,3 +1,5 @@
+import 'package:rate_my_app/rate_my_app.dart';
+
 abstract class HomeEvent{
 }
 
@@ -23,4 +25,13 @@ class CalculateEvent extends HomeEvent{
 class CalculateBackEvent extends HomeEvent{
   @override
   String toString() => 'CalculateBackEvent Event';
+}
+
+class RateMyAddEvent extends HomeEvent{
+  final RateMyApp rateMyApp;
+
+  RateMyAddEvent(this.rateMyApp);
+  
+  @override
+  String toString() => 'RateMyAddEvent Event';
 }

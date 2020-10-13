@@ -24,6 +24,7 @@ class SimulatorResultChangeEvent extends ChartEvent {
   final String beneficiosPlataformaText;
   final double beneficiosPlataforma;
   final String referidosText;
+  final bool overflow;
 
   SimulatorResultChangeEvent(
       {this.aportacionInicialText,
@@ -38,7 +39,9 @@ class SimulatorResultChangeEvent extends ChartEvent {
       this.beneficiosTotales,
       this.beneficiosPlataformaText,
       this.beneficiosPlataforma,
-      this.beneficiosNetosReferidos});
+      this.beneficiosNetosReferidos,
+      this.overflow
+      });
 
   @override
   String toString() => 'Simulate Chart Event';

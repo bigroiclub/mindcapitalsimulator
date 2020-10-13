@@ -26,6 +26,7 @@ class SimulatorResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double _aportacion = 0.0;
     double _aportacionFutura = 0.0;
     double _beneficiosNetos = 0.0;
     bool _interesCompuestoFlag = false;
@@ -39,10 +40,14 @@ class SimulatorResultWidget extends StatelessWidget {
     double _beneficiosPlataforma;
     double _beneficiosTotales;
     bool _infoProfitButton;
+    bool _showRetiro = false;
+    double _retiroTotal = 0;
+    bool _overflow = false;
 
     return BlocBuilder<CalculationBloc, CalculationState>(
       builder: (BuildContext context, state) {
         if (state is CalculationInitState) {
+          _aportacion = state.aportacion;
           _aportacionFutura = state.aportacionFutura;
           _beneficiosNetos = state.beneficiosNetos;
           _interesCompuestoFlag = state.interesCompuestoFlag;
@@ -54,6 +59,9 @@ class SimulatorResultWidget extends StatelessWidget {
           _beneficiosTotales = state.beneficiosTotales;
           _infoProfitButton = state.infoProfitButton;
           _isLoading = true;
+          _retiroTotal = state.retiroTotal;
+          _overflow = state.overflow;
+
           BlocProvider.of<ChartBloc>(context).add(SimulatorResultChangeEvent(
               aportacionInicialText:
                   AppLocalizations.of(context).initContribution,
@@ -69,8 +77,10 @@ class SimulatorResultWidget extends StatelessWidget {
               beneficiosPlataformaText: AppLocalizations.of(context).platform,
               beneficiosPlataforma: state.beneficiosPlataforma,
               referidosText: AppLocalizations.of(context).referProfit,
-              beneficiosNetosReferidos: _beneficiosNetosReferidos));
+              beneficiosNetosReferidos: _beneficiosNetosReferidos,
+              overflow: _overflow));
         } else if (state is ReSimulationState) {
+          _aportacion = state.aportacion;
           _aportacionFutura = state.aportacionFutura;
           _beneficiosNetos = state.beneficiosNetos;
           _interesCompuestoFlag = state.interesCompuestoFlag;
@@ -82,6 +92,9 @@ class SimulatorResultWidget extends StatelessWidget {
           _beneficiosTotales = state.beneficiosTotales;
           _infoProfitButton = state.infoProfitButton;
           _isLoading = true;
+          _retiroTotal = state.retiroTotal;
+          _showRetiro = state.showRetiro;
+          _overflow = state.overflow;
           BlocProvider.of<ChartBloc>(context).add(SimulatorResultChangeEvent(
               aportacionInicialText:
                   AppLocalizations.of(context).initContribution,
@@ -97,24 +110,14 @@ class SimulatorResultWidget extends StatelessWidget {
               beneficiosPlataformaText: AppLocalizations.of(context).platform,
               beneficiosPlataforma: state.beneficiosPlataforma,
               referidosText: AppLocalizations.of(context).referProfit,
-              beneficiosNetosReferidos: _beneficiosNetosReferidos));
+              beneficiosNetosReferidos: _beneficiosNetosReferidos,
+              overflow: _overflow));
         } else if (state is CalculationStateError) {
           CustomSnackBar().show(context: context, message: state.message);
         }
         return BlocBuilder<ChartBloc, ChartState>(
             builder: (BuildContext context, state) {
           if (state is ChartInitState) {
-            // BlocProvider.of<ChartBloc>(context).add(SimulatorResultChangeEvent(
-            //     aportacionInicialText: AppLocalizations.of(context).initContribution,
-            //     aportacionInicial: state.aportacion,
-            //     beneficiosNetosText:
-            //         AppLocalizations.of(context).benefitsAvailable,
-            //     beneficiosNetos: _beneficiosNetos,
-            //     intCompuestoText: AppLocalizations.of(context).compContribution,
-            //     aportacionFutura: _aportacionFutura,
-            //     interesCompuestoFlag: _interesCompuestoFlag,
-            //     referidosText: AppLocalizations.of(context).referProfit,
-            // beneficiosNetosReferidos: _beneficiosNetosReferidos));
             _isLoading = true;
           } else if (state is SimulatorResultChangeState) {
             pieSectionDataList = state.pieSectionDataList;
@@ -132,12 +135,15 @@ class SimulatorResultWidget extends StatelessWidget {
               _backButton(context, withCalcButton),
               _beneficiosWidget(
                   context,
+                  _aportacion,
+                  _aportacionFutura,
                   _beneficiosNetos,
                   _beneficiosPlataforma,
                   _beneficiosNetosReferidos,
                   _beneficiosTotales,
                   _infoProfitButton,
                   withCalcButton),
+              _withdrawWidget(context, _showRetiro, _retiroTotal),
               _interesCompuestoWidget(
                   context, _infoIntCompuesto, _interesCompuestoFlag),
               _monthSliderWidget(context, _tipoGanancia, _mesesCounter),
@@ -189,18 +195,24 @@ class SimulatorResultWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Expanded(
-            flex: 14,
-            child: _interesCompuesto(
-              context,
-              _infoIntCompuesto,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: _interesCompuestoFlagWidget(context, _interesCompuestoFlag),
-          ),
+          // Expanded(
+          //   flex: 14,
+          //   child: _interesCompuesto(
+          //     context,
+          //     _infoIntCompuesto,
+          //   ),
+          // ),
+          // Expanded(
+          //   flex: 1,
+          //   child: _interesCompuestoFlagWidget(context, _interesCompuestoFlag),
+          // ),
+      // ),
+          _interesCompuesto(
+            context,
+            _infoIntCompuesto ),
+            _interesCompuestoFlagWidget(context, _interesCompuestoFlag),
         ],
       ),
     );
@@ -226,14 +238,17 @@ class SimulatorResultWidget extends StatelessWidget {
 
   _interesCompuestoFlagWidget(
       BuildContext context, bool _interesCompuestoFlag) {
-    return Switch(
-      inactiveThumbColor: Colors.blue,
-      activeColor: Colors.green,
-      value: _interesCompuestoFlag,
-      onChanged: (value) {
-        BlocProvider.of<CalculationBloc>(context)
-            .add(FlagInteresCompuestoEvent());
-      },
+    return Container(
+      alignment: Alignment.centerRight,
+      child: Switch(
+        inactiveThumbColor: Colors.blue,
+        activeColor: Colors.green,
+        value: _interesCompuestoFlag,
+        onChanged: (value) {
+          BlocProvider.of<CalculationBloc>(context)
+              .add(FlagInteresCompuestoEvent());
+        },
+      ),
     );
   }
 
@@ -263,12 +278,17 @@ class SimulatorResultWidget extends StatelessWidget {
 
   _beneficiosWidget(
       BuildContext context,
+      double _aportacion,
+      double _aportacionFutura,
       double _beneficiosNetos,
       double _beneficiosPlataforma,
       double _beneficiosNetosReferidos,
       double _beneficiosTotales,
       bool _infoProfitButton,
       bool withCalcButton) {
+    double beneficios = _beneficiosNetos + _aportacionFutura + _aportacion;
+    double beneficiosTotal = beneficios + _beneficiosPlataforma;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -278,7 +298,7 @@ class SimulatorResultWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${AppLocalizations.of(context).benefitsAvailable}:'),
+            Text('${AppLocalizations.of(context).total}:'),
             InfoIconButton(
               visibility: _infoProfitButton,
               content: Column(
@@ -286,9 +306,9 @@ class SimulatorResultWidget extends StatelessWidget {
                 children: [
                   Wrap(
                     children: [
-                      Text('${AppLocalizations.of(context).total}:',
+                      Text('${AppLocalizations.of(context).grossTotal}:',
                           style: TextStyle(color: Colors.white)),
-                      Text('${_beneficiosTotales.toStringAsFixed(2)} \$',
+                      Text('${beneficiosTotal.toStringAsFixed(2)} \$',
                           style: TextStyle(color: Colors.white)),
                     ],
                   ),
@@ -308,7 +328,7 @@ class SimulatorResultWidget extends StatelessWidget {
           ],
         ),
         Text(
-          '${_beneficiosNetos.toStringAsFixed(2)} \$',
+          '${beneficios.toStringAsFixed(2)} \$',
           style: TextStyle(fontSize: 30),
         ),
         Visibility(
@@ -322,6 +342,21 @@ class SimulatorResultWidget extends StatelessWidget {
             )),
       ],
     );
+  }
+
+  Widget _withdrawWidget(
+      BuildContext context, bool showRetiro, double _retiroTotal) {
+    return Visibility(
+        visible: showRetiro,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(AppLocalizations.of(context).withdraw +
+                ': ' +
+                _retiroTotal.toString() +
+                ' \$'),
+          ],
+        ));
   }
 
   Widget _pieChart(

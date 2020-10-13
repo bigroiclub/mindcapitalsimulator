@@ -32,7 +32,10 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
   double _beneficiosPlataforma;
 
   bool _isExpanded = false;
+  bool _showRetiro = false;
+  bool _showPro = false;
   TextEditingController _aportacionController = TextEditingController();
+  TextEditingController _retiroController = TextEditingController();
   TextEditingController _referalLevel1Controller = TextEditingController();
   TextEditingController _referalLevel2Controller = TextEditingController();
   TextEditingController _referalLevel3Controller = TextEditingController();
@@ -44,6 +47,7 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
   TextEditingController _referalLevel9Controller = TextEditingController();
   TextEditingController _referalLevel10Controller = TextEditingController();
   final _aportacionKey = GlobalKey<FormState>();
+  final _withdrawKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +73,11 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
             ? _aportacionController.text = '0'
             : _aportacionController.text = '';
 
+        _retiroController.text == ''
+            ? _retiroController.text = '0'
+            : _retiroController.text = '';
+        // _retiroController.text = state.retiro.toStringAsExponential(0);
+
         _isExpanded = state.isExpanded;
         _referalLevel1Controller.text = '0';
         _referalLevel2Controller.text = '0';
@@ -84,6 +93,13 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
         if (_aportacionController.text.compareTo('') == 0)
           _aportacionController.text = state.aportacion.toStringAsFixed(0);
         _aportacionTotalReferido = state.aportacionTotalReferido;
+
+        if (_retiroController.text.compareTo('') == 0) // || state.retiro == 0.0)
+          _retiroController.text = state.retiro.toStringAsFixed(0);
+
+        _showRetiro = state.showRetiro;
+        _showPro = state.showPro;
+
         if (_referalLevel1Controller.text.compareTo('') == 0)
           _referalLevel1Controller.text = state.referLevel1.toStringAsFixed(0);
         if (_referalLevel2Controller.text.compareTo('') == 0)
@@ -136,9 +152,11 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
               _infoPlatform,
               _beneficiosTotales,
               _beneficiosPlataforma),
-          _calcButton(widget.withCalcButton),
+          _showProButton(context, _showPro),
+          _withdraw(context, _showPro, _showRetiro, _retiroController),
           _aportacionReferidosWidget(
               context,
+              _showPro,
               _aportacionTotalReferido,
               _isExpanded,
               _referalLevel1Controller,
@@ -151,6 +169,7 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
               _referalLevel8Controller,
               _referalLevel9Controller,
               _referalLevel10Controller),
+          _calcButton(context, widget.withCalcButton),
         ],
       );
     });
@@ -197,14 +216,73 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
     );
   }
 
-  _calcButton(bool withCalcButton) {
+  _withdraw(BuildContext context, bool showPro, bool showWithdraw,
+      TextEditingController withdrawController) {
+
+    return Visibility(
+      visible: showWithdraw && showPro,
+      child: Form(
+        key: _withdrawKey,
+              child: TextFormField(
+          controller: withdrawController,
+          style: TextStyle(fontSize: 20.0),
+          decoration: InputDecoration(
+              labelText: '${AppLocalizations.of(context).withdraw}'),
+          keyboardType: TextInputType.number,
+          onChanged: (value) {
+            double withdraw = double.parse(value);
+            if (!_withdrawKey.currentState.validate())
+              withdraw = 0.0;
+          
+            BlocProvider.of<CalculationBloc>(context)
+                  .add(CambioRetiroEvent(withdraw));
+          },
+          onTap: () {
+            withdrawController.text.startsWith('0')
+                ? withdrawController.text = ''
+                : withdrawController.text = withdrawController.text;
+          },
+          validator: (value) {
+          double withdraw = double.parse(value);
+          if (withdraw < 50) {
+            return '${AppLocalizations.of(context).minWithdraw} 50\$';
+          }
+          return null;
+        },
+        ),
+      ),
+    );
+  }
+
+  _showProButton(BuildContext context, bool _showPro) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(AppLocalizations.of(context).proSettings),
+        Container(
+          alignment: Alignment.centerRight,
+          child: Switch(
+            inactiveThumbColor: Colors.blue,
+            activeColor: Colors.green,
+            value: _showPro,
+            onChanged: (value) {
+              BlocProvider.of<CalculationBloc>(context).add(FlagProSettingsEvent());
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  _calcButton(BuildContext context, bool withCalcButton) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Visibility(
         visible: withCalcButton,
         child: CustomButton(
-          child: Text('Calcular...'),
-          onPressed: () => BlocProvider.of<HomeBloc>(context).add(CalculateEvent()),
+          child: Text(AppLocalizations.of(context).simulate),
+          onPressed: () =>
+              BlocProvider.of<HomeBloc>(context).add(CalculateEvent()),
         ),
       ),
     );
@@ -212,6 +290,7 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
 
   _aportacionReferidosWidget(
       BuildContext context,
+      bool showPro,
       double _aportacionTotalReferido,
       bool _isExpanded,
       TextEditingController _referalLevel1Controller,
@@ -224,49 +303,52 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
       TextEditingController _referalLevel8Controller,
       TextEditingController _referalLevel9Controller,
       TextEditingController _referalLevel10Controller) {
-    return ExpansionPanelList(
-        expansionCallback: (int index, bool isExpanded) {
-          BlocProvider.of<CalculationBloc>(context)
-              .add(ExpandPanelEvent(!_isExpanded));
-        },
-        children: [
-          ExpansionPanel(
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return ListTile(
-                title: Text(
-                    '${AppLocalizations.of(context).referTotal}: ${_aportacionTotalReferido.toStringAsFixed(2)}'),
-              );
-            },
-            body: Card(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 4.0, bottom: 4.0),
-                child: Column(children: <Widget>[
-                  _levelN(context, 1, _referalLevel1Controller,
-                      AppLocalizations.of(context).referLevel1, 8, 100),
-                  _levelN(context, 2, _referalLevel2Controller,
-                      AppLocalizations.of(context).referLevel2, 4, 100),
-                  _levelN(context, 3, _referalLevel3Controller,
-                      AppLocalizations.of(context).referLevel3, 3, 5000),
-                  _levelN(context, 4, _referalLevel4Controller,
-                      AppLocalizations.of(context).referLevel4, 3, 5000),
-                  _levelN(context, 5, _referalLevel5Controller,
-                      AppLocalizations.of(context).referLevel5, 2, 15000),
-                  _levelN(context, 6, _referalLevel6Controller,
-                      AppLocalizations.of(context).referLevel6, 2, 15000),
-                  _levelN(context, 7, _referalLevel7Controller,
-                      AppLocalizations.of(context).referLevel7, 2, 50000),
-                  _levelN(context, 8, _referalLevel8Controller,
-                      AppLocalizations.of(context).referLevel8, 2, 50000),
-                  _levelN(context, 9, _referalLevel9Controller,
-                      AppLocalizations.of(context).referLevel9, 2, 100000),
-                  _levelN(context, 10, _referalLevel10Controller,
-                      AppLocalizations.of(context).referLevel10, 2, 100000),
-                ]),
+    return Visibility(
+      visible: showPro,
+      child: ExpansionPanelList(
+          expansionCallback: (int index, bool isExpanded) {
+            BlocProvider.of<CalculationBloc>(context)
+                .add(ExpandPanelEvent(!_isExpanded));
+          },
+          children: [
+            ExpansionPanel(
+              headerBuilder: (BuildContext context, bool isExpanded) {
+                return ListTile(
+                  title: Text(
+                      '${AppLocalizations.of(context).referTotal}: ${_aportacionTotalReferido.toStringAsFixed(2)}'),
+                );
+              },
+              body: Card(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 4.0, bottom: 4.0),
+                  child: Column(children: <Widget>[
+                    _levelN(context, 1, _referalLevel1Controller,
+                        AppLocalizations.of(context).referLevel1, 8, 100),
+                    _levelN(context, 2, _referalLevel2Controller,
+                        AppLocalizations.of(context).referLevel2, 4, 100),
+                    _levelN(context, 3, _referalLevel3Controller,
+                        AppLocalizations.of(context).referLevel3, 3, 5000),
+                    _levelN(context, 4, _referalLevel4Controller,
+                        AppLocalizations.of(context).referLevel4, 3, 5000),
+                    _levelN(context, 5, _referalLevel5Controller,
+                        AppLocalizations.of(context).referLevel5, 2, 15000),
+                    _levelN(context, 6, _referalLevel6Controller,
+                        AppLocalizations.of(context).referLevel6, 2, 15000),
+                    _levelN(context, 7, _referalLevel7Controller,
+                        AppLocalizations.of(context).referLevel7, 2, 50000),
+                    _levelN(context, 8, _referalLevel8Controller,
+                        AppLocalizations.of(context).referLevel8, 2, 50000),
+                    _levelN(context, 9, _referalLevel9Controller,
+                        AppLocalizations.of(context).referLevel9, 2, 100000),
+                    _levelN(context, 10, _referalLevel10Controller,
+                        AppLocalizations.of(context).referLevel10, 2, 100000),
+                  ]),
+                ),
               ),
+              isExpanded: _isExpanded,
             ),
-            isExpanded: _isExpanded,
-          ),
-        ]);
+          ]),
+    );
   }
 
   _levelN(

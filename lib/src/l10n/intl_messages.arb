@@ -1,12 +1,12 @@
 {
-  "@@last_modified": "2020-05-01T19:47:10.994403",
+  "@@last_modified": "2020-09-14T19:39:58.031169",
   "title": "Mind.capital Simulator",
   "@title": {
     "description": "Title for the App application",
     "type": "text",
     "placeholders": {}
   },
-  "appBarButton": "Free Registration!",
+  "appBarButton": "Join Free!",
   "@appBarButton": {
     "description": "Title for appBar Button",
     "type": "text",
@@ -30,7 +30,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compContribution": "Composite Contribution",
+  "compContribution": "Compound",
   "@compContribution": {
     "description": "Composite Contribution text",
     "type": "text",
@@ -144,7 +144,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compInterest": "Composite Interest",
+  "compInterest": "Compound",
   "@compInterest": {
     "description": "Composite Interest text",
     "type": "text",
@@ -306,7 +306,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "infoInteresCompuesto": "Reinvest profit",
+  "infoInteresCompuesto": "Reinvest",
   "@infoInteresCompuesto": {
     "description": "infoInteresCompuesto text",
     "type": "text",
@@ -333,6 +333,102 @@
   "faqUrl": "https://mind.capital/en/attach/mind-capital-faq.pdf",
   "@faqUrl": {
     "description": "faqUrl text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateTitle": "Rate this app",
+  "@rateTitle": {
+    "description": "rateTitle text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateMessage": "If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn't take you more than one minute.",
+  "@rateMessage": {
+    "description": "rateMessage text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateButton": "RATE",
+  "@rateButton": {
+    "description": "rateButton text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateNoButton": "NO THANKS",
+  "@rateNoButton": {
+    "description": "rateNoButton text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "rateLaterButton": "MAYBE LATER",
+  "@rateLaterButton": {
+    "description": "rateLaterButton text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "withdraw": "Withdraw",
+  "@withdraw": {
+    "description": "Withdraw text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "simulate": "Simulate",
+  "@simulate": {
+    "description": "simulate text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "grossTotal": "Gross Total",
+  "@grossTotal": {
+    "description": "grossTotal text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "proSettings": "Pro Settings",
+  "@proSettings": {
+    "description": "proSettings text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minWithdraw": "Minimun withdraw",
+  "@minWithdraw": {
+    "description": "minWithdraw text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "email": "Email",
+  "@email": {
+    "description": "email text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compliance": "The simulation is only available to members of the BigRoi Club. Becoming a member is as easy as signing up for free at Mind.capital through the button on the top right.",
+  "@compliance": {
+    "description": "compliance text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "Send",
+  "@send": {
+    "description": "send text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "complianceLoginSended": "Email Sended",
+  "@complianceLoginSended": {
+    "description": "complianceLoginSended text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Login",
+  "@login": {
+    "description": "login text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginFail": "Unauthorized Email. Contact admin.",
+  "@loginFail": {
+    "description": "loginFail text",
     "type": "text",
     "placeholders": {}
   }

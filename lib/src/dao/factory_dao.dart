@@ -1,3 +1,4 @@
+import 'interface/login_dao.dart';
 import 'interface/track_dao.dart';
 
 class FactoryDao {
@@ -7,6 +8,7 @@ class FactoryDao {
   static const String MOCK = 'Mock';
 
   final TrackDao trackDao;
+  final LoginDao loginDao;
 
-  FactoryDao({this.trackDao});
+  FactoryDao({this.trackDao, this.loginDao});
 }

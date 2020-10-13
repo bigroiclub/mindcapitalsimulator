@@ -1,3 +1,5 @@
+import 'package:rate_my_app/rate_my_app.dart';
+
 abstract class HomeState {}
 
 class HomeInitState extends HomeState {
@@ -16,12 +18,21 @@ class ChangePageState extends HomeState {
 
 class CalculateState extends HomeState {
   @override
-  String toString() => 'CalculationStaterror';
+  String toString() => 'CalculationState';
 }
 
 class CalculateBackState extends HomeState {
   @override
-  String toString() => 'CalculateBackStateerror';
+  String toString() => 'CalculateBackState';
+}
+
+class RateMyAppState extends HomeState {
+  final RateMyApp rateMyApp;
+
+  RateMyAppState(this.rateMyApp);
+  
+  @override
+  String toString() => 'RateMyAppState';
 }
 
 class HomeStateError extends HomeState {

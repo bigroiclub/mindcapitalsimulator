@@ -20,6 +20,9 @@ class CalculationInitState extends CalculationState {
   int mesesCounter;
   bool infoProfitButton;
   bool isExpanded;
+  double retiro;
+  double retiroTotal;
+  bool overflow;
 
   CalculationInitState(
       {this.beneficiosTotales,
@@ -38,7 +41,11 @@ class CalculationInitState extends CalculationState {
       this.mesesCounter,
       this.infoIntCompuesto,
       this.infoProfitButton,
-      this.isExpanded});
+      this.isExpanded,
+      this.retiro,
+      this.retiroTotal,
+      this.overflow
+      });
 
   @override
   String toString() => 'CalculationStateEmpty';
@@ -72,6 +79,11 @@ class ReSimulationState extends CalculationState {
   bool infoIntCompuesto;
   bool infoProfitButton;
   bool isExpanded;
+  bool showRetiro;
+  double retiro;
+  double retiroTotal;
+  bool overflow;
+  bool showPro;
 
   ReSimulationState(
       {this.aportacion,
@@ -100,7 +112,13 @@ class ReSimulationState extends CalculationState {
       this.infoPlatform,
       this.infoIntCompuesto,
       this.infoProfitButton,
-      this.isExpanded});
+      this.isExpanded,
+      this.showRetiro,
+      this.retiro,
+      this.retiroTotal,
+      this.overflow,
+      this.showPro
+      });
   @override
   String toString() => 'Calculation State';
 }

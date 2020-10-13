@@ -1,0 +1,290 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="club.bigroi.mindcapitalsimulator"
+4    android:versionCode="13"
+5    android:versionName="4.0.1" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml
+10    <!-- Required permission for App measurement to run. -->
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:23:5-67
+11-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:23:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:24:5-79
+12-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:24:22-76
+13    <uses-permission android:name="android.permission.WAKE_LOCK" />
+13-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:25:5-68
+13-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:25:22-65
+14    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+14-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:26:5-110
+14-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:26:22-107
+15    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+15-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:26:5-82
+15-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:26:22-79
+16    <!--
+17 io.flutter.app.FlutterApplication is an android.app.Application that
+18         calls FlutterMain.startInitialization(this); in its onCreate method.
+19         In most cases you can leave this as-is, but you if you want to provide
+20         additional functionality it is fine to subclass or reimplement
+21         FlutterApplication and put your custom class here.
+22    -->
+23    <application
+23-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:8:5-50:19
+24        android:name="io.flutter.app.FlutterApplication"
+24-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:9:9-57
+25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+25-->[androidx.core:core:1.1.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/3aaf6e5219b7f981ec263df919098c6f/core-1.1.0/AndroidManifest.xml:24:18-86
+26        android:icon="@mipmap/launcher_icon"
+26-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:11:9-45
+27        android:label="Mind.capital Simulator" >
+27-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:10:9-47
+28        <activity
+28-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:12:9-44:20
+29            android:name="club.bigroi.mindcapitalsimulator.MainActivity"
+29-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:13:13-41
+30            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+30-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:16:13-163
+31            android:hardwareAccelerated="true"
+31-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:17:13-47
+32            android:launchMode="singleTop"
+32-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:14:13-43
+33            android:theme="@style/LaunchTheme"
+33-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:15:13-47
+34            android:windowSoftInputMode="adjustResize" >
+34-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:18:13-55
+35
+36            <!--
+37                 Specifies an Android theme to apply to this Activity as soon as
+38                 the Android process has started. This theme is visible to the user
+39                 while the Flutter UI initializes. After that, this theme continues
+40                 to determine the Window background behind the Flutter UI.
+41            -->
+42            <meta-data
+42-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:23:13-26:17
+43                android:name="io.flutter.embedding.android.NormalTheme"
+43-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:24:15-70
+44                android:resource="@style/NormalTheme" />
+44-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:25:15-52
+45            <!--
+46                 Displays an Android View that continues showing the launch screen
+47                 Drawable until Flutter paints its first frame, then this splash
+48                 screen fades out. A splash screen is useful to avoid any visual
+49                 gap between the end of Android's launch screen and the painting of
+50                 Flutter's first frame.
+51            -->
+52            <meta-data
+52-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:32:13-35:17
+53                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+53-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:33:15-79
+54                android:resource="@drawable/launch_background" />
+54-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:34:15-61
+55
+56            <intent-filter>
+56-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:36:13-39:29
+57                <action android:name="android.intent.action.MAIN" />
+57-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:37:17-68
+57-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:37:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:38:17-76
+59-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:38:27-74
+60            </intent-filter>
+61            <intent-filter>
+61-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:40:13-43:29
+62                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+62-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:41:17-69
+62-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:41:25-66
+63
+64                <category android:name="android.intent.category.DEFAULT" />
+64-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:42:17-76
+64-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:42:27-73
+65            </intent-filter>
+66        </activity>
+67        <!--
+68             Don't delete the meta-data below.
+69             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+70        -->
+71        <meta-data
+71-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:47:9-49:33
+72            android:name="flutterEmbedding"
+72-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:48:13-44
+73            android:value="2" />
+73-->/Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/android/app/src/main/AndroidManifest.xml:49:13-30
+74
+75        <service
+75-->[:cloud_firestore] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
+76            android:name="com.google.firebase.components.ComponentDiscoveryService"
+76-->[:cloud_firestore] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:8:18-89
+77            android:directBootAware="true"
+77-->[com.google.firebase:firebase-common:19.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/03fe0e69acc59d05f7cd1ced2e178248/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+78            android:exported="false" >
+78-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/ca912bff2260618b5b638fe661521702/play-services-measurement-api-17.2.2/AndroidManifest.xml:29:13-37
+79            <meta-data
+79-->[:cloud_firestore] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:85
+80                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
+80-->[:cloud_firestore] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:10:17-133
+81                android:value="com.google.firebase.components.ComponentRegistrar" />
+81-->[:cloud_firestore] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:11:17-82
+82            <meta-data
+82-->[:firebase_core] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:85
+83                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
+83-->[:firebase_core] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:10:17-123
+84                android:value="com.google.firebase.components.ComponentRegistrar" />
+84-->[:firebase_core] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:11:17-82
+85            <meta-data
+85-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:14:13-16:85
+86                android:name="com.google.firebase.components:io.flutter.plugins.firebasemessaging.FlutterFirebaseAppRegistrar"
+86-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:15:17-127
+87                android:value="com.google.firebase.components.ComponentRegistrar" />
+87-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:16:17-82
+88            <meta-data
+88-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/ca912bff2260618b5b638fe661521702/play-services-measurement-api-17.2.2/AndroidManifest.xml:30:13-32:85
+89                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+89-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/ca912bff2260618b5b638fe661521702/play-services-measurement-api-17.2.2/AndroidManifest.xml:31:17-139
+90                android:value="com.google.firebase.components.ComponentRegistrar" />
+90-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/ca912bff2260618b5b638fe661521702/play-services-measurement-api-17.2.2/AndroidManifest.xml:32:17-82
+91            <meta-data
+91-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:32:13-34:85
+92                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+92-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:33:17-96
+93                android:value="com.google.firebase.components.ComponentRegistrar" />
+93-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:34:17-82
+94            <meta-data
+94-->[com.google.firebase:firebase-firestore:21.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/6e43f88ba9a7453fb50e6373b779d457/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:20:13-22:85
+95                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+95-->[com.google.firebase:firebase-firestore:21.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/6e43f88ba9a7453fb50e6373b779d457/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:21:17-111
+96                android:value="com.google.firebase.components.ComponentRegistrar" />
+96-->[com.google.firebase:firebase-firestore:21.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/6e43f88ba9a7453fb50e6373b779d457/jetified-firebase-firestore-21.3.0/AndroidManifest.xml:22:17-82
+97        </service>
+98        <service android:name="io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingService" >
+98-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
+98-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:8:18-101
+99            <intent-filter>
+99-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:29
+100                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+100-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:10:17-78
+100-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:10:25-75
+101            </intent-filter>
+102        </service>
+103
+104        <activity
+104-->[:url_launcher] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:8:9-11:74
+105            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+105-->[:url_launcher] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:9:13-74
+106            android:exported="false"
+106-->[:url_launcher] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:10:13-37
+107            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+107-->[:url_launcher] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/url_launcher/intermediates/library_manifest/release/AndroidManifest.xml:11:13-71
+108
+109        <receiver
+109-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:29:9-33:20
+110            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+110-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:30:13-85
+111            android:enabled="true"
+111-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:31:13-35
+112            android:exported="false" >
+112-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:32:13-37
+113        </receiver>
+114        <receiver
+114-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:34:9-42:20
+115            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+115-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:35:13-100
+116            android:enabled="true"
+116-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:36:13-35
+117            android:exported="true"
+117-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:37:13-36
+118            android:permission="android.permission.INSTALL_PACKAGES" >
+118-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:38:13-69
+119            <intent-filter>
+119-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:39:13-41:29
+120                <action android:name="com.android.vending.INSTALL_REFERRER" />
+120-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:40:17-79
+120-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:40:25-76
+121            </intent-filter>
+122        </receiver>
+123
+124        <service
+124-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:44:9-47:40
+125            android:name="com.google.android.gms.measurement.AppMeasurementService"
+125-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:45:13-84
+126            android:enabled="true"
+126-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:46:13-35
+127            android:exported="false" />
+127-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:47:13-37
+128        <service
+128-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:48:9-52:72
+129            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+129-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:49:13-87
+130            android:enabled="true"
+130-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:50:13-35
+131            android:exported="false"
+131-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:51:13-37
+132            android:permission="android.permission.BIND_JOB_SERVICE" />
+132-->[com.google.android.gms:play-services-measurement:17.2.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/a2d3f38d709f8b9f54c2677fdca8f29a/play-services-measurement-17.2.2/AndroidManifest.xml:52:13-69
+133        <!--
+134             FirebaseMessagingService performs security checks at runtime,
+135             but set to not exported to explicitly avoid allowing another app to call it.
+136        -->
+137        <service
+137-->[com.google.firebase:firebase-messaging:20.0.1] /Users/Fran/.gradle/caches/transforms-2/files-2.1/aa3831676cc907284d0f43eca3523988/jetified-firebase-messaging-20.0.1/AndroidManifest.xml:28:9-34:19
+138            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+138-->[com.google.firebase:firebase-messaging:20.0.1] /Users/Fran/.gradle/caches/transforms-2/files-2.1/aa3831676cc907284d0f43eca3523988/jetified-firebase-messaging-20.0.1/AndroidManifest.xml:29:13-82
+139            android:exported="false" >
+139-->[com.google.firebase:firebase-messaging:20.0.1] /Users/Fran/.gradle/caches/transforms-2/files-2.1/aa3831676cc907284d0f43eca3523988/jetified-firebase-messaging-20.0.1/AndroidManifest.xml:30:13-37
+140            <intent-filter android:priority="-500" >
+140-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:29
+141                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+141-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:10:17-78
+141-->[:firebase_messaging] /Users/Fran/Documents/FlutterProjects/mindcapitalsimulator/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:10:25-75
+142            </intent-filter>
+143        </service>
+144
+145        <receiver
+145-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:37:9-44:20
+146            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+146-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:38:13-78
+147            android:exported="true"
+147-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:39:13-36
+148            android:permission="com.google.android.c2dm.permission.SEND" >
+148-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:40:13-73
+149            <intent-filter>
+149-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:41:13-43:29
+150                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+150-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:42:17-81
+150-->[com.google.firebase:firebase-iid:20.0.2] /Users/Fran/.gradle/caches/transforms-2/files-2.1/f26cdfb5f8d69cbc9663543f3ec1de65/firebase-iid-20.0.2/AndroidManifest.xml:42:25-78
+151            </intent-filter>
+152        </receiver>
+153
+154        <provider
+154-->[com.google.firebase:firebase-common:19.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/03fe0e69acc59d05f7cd1ced2e178248/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+155            android:name="com.google.firebase.provider.FirebaseInitProvider"
+155-->[com.google.firebase:firebase-common:19.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/03fe0e69acc59d05f7cd1ced2e178248/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+156            android:authorities="club.bigroi.mindcapitalsimulator.firebaseinitprovider"
+156-->[com.google.firebase:firebase-common:19.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/03fe0e69acc59d05f7cd1ced2e178248/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+157            android:exported="false"
+157-->[com.google.firebase:firebase-common:19.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/03fe0e69acc59d05f7cd1ced2e178248/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+158            android:initOrder="100" />
+158-->[com.google.firebase:firebase-common:19.3.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/03fe0e69acc59d05f7cd1ced2e178248/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+159
+160        <activity
+160-->[com.google.android.gms:play-services-base:17.0.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/4c0b774c09d5393feb013f0dbe753af3/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+161            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+161-->[com.google.android.gms:play-services-base:17.0.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/4c0b774c09d5393feb013f0dbe753af3/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+162            android:exported="false"
+162-->[com.google.android.gms:play-services-base:17.0.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/4c0b774c09d5393feb013f0dbe753af3/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+163            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+163-->[com.google.android.gms:play-services-base:17.0.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/4c0b774c09d5393feb013f0dbe753af3/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+164
+165        <meta-data
+165-->[com.google.android.gms:play-services-basement:17.0.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/c62fac6f8ddba16a98e625fe9d028203/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+166            android:name="com.google.android.gms.version"
+166-->[com.google.android.gms:play-services-basement:17.0.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/c62fac6f8ddba16a98e625fe9d028203/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+167            android:value="@integer/google_play_services_version" />
+167-->[com.google.android.gms:play-services-basement:17.0.0] /Users/Fran/.gradle/caches/transforms-2/files-2.1/c62fac6f8ddba16a98e625fe9d028203/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+168    </application>
+169
+170</manifest>

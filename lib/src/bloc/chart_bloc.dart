@@ -13,7 +13,7 @@ class ChartBloc extends Bloc<ChartEvent, ChartState> {
   double _dayAverage = 0.0;
   double _weekAverage = 0.0;
   double _monthAverage = 0.0;
-  FactoryDao factoryDao;
+  final FactoryDao factoryDao;
 
   List<PieSectionData> _pieSectionDataList = [];
   List<PieIndicator> _pieIndicatorList = [];
@@ -50,13 +50,21 @@ class ChartBloc extends Bloc<ChartEvent, ChartState> {
             : ChartStateError('Algo fue mal al cargar los datos!');
       }
     } else if (event is SimulatorResultChangeEvent) {
+      bool _showReferals = false;
+      bool overflow = event.overflow;
       _pieSectionDataList = [];
       _pieIndicatorList = [];
 
-      var _beneficiosNetos =
-          (event.beneficiosNetos - event.beneficiosNetosReferidos);
-      var _aportacionFutura =
-          (event.aportacionFutura - event.aportacionInicial);
+      var _beneficiosNetos = event.beneficiosNetos;
+      if (event.beneficiosNetos >= event.beneficiosNetosReferidos && !overflow) {
+        _beneficiosNetos =
+            (event.beneficiosNetos - event.beneficiosNetosReferidos);
+        _showReferals = true;
+      }
+
+      // var _aportacionFutura =
+      //     (event.aportacionFutura - event.aportacionInicial);
+      var _aportacionFutura = event.aportacionFutura;
 
       _pieSectionDataList.add(
         PieSectionData(
@@ -70,7 +78,7 @@ class ChartBloc extends Bloc<ChartEvent, ChartState> {
         color: Colors.red,
       ));
       //Interés compuesto
-      if (event.interesCompuestoFlag && _aportacionFutura!=0.0) {
+      if (event.interesCompuestoFlag && _aportacionFutura != 0.0) {
         _pieSectionDataList.add(
           PieSectionData(
             title: '${_aportacionFutura.toStringAsFixed(2)}',
@@ -97,18 +105,22 @@ class ChartBloc extends Bloc<ChartEvent, ChartState> {
       ));
       //Referidos
       if (event.beneficiosNetosReferidos != 0) {
-        _pieSectionDataList.add(
-          PieSectionData(
-            title: '${event.beneficiosNetosReferidos.toStringAsFixed(2)}',
-            value:
-                event.beneficiosNetosReferidos, //beneficiosNetosReferidosx100,
-            color: Colors.yellow,
-          ),
-        );
-        _pieIndicatorList.add(PieIndicator(
-          title: event.referidosText,
-          color: Colors.yellow,
-        ));
+        if (!event.interesCompuestoFlag) {
+          if (_beneficiosNetos == 0.0 || _showReferals) {
+            _pieSectionDataList.add(
+              PieSectionData(
+                title: '${event.beneficiosNetosReferidos.toStringAsFixed(2)}',
+                value: event
+                    .beneficiosNetosReferidos, //beneficiosNetosReferidosx100,
+                color: Colors.yellow,
+              ),
+            );
+            _pieIndicatorList.add(PieIndicator(
+              title: event.referidosText,
+              color: Colors.yellow,
+            ));
+          }
+        }
       }
 
       yield SimulatorResultChangeState(

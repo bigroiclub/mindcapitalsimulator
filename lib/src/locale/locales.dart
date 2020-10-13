@@ -45,7 +45,7 @@ class AppLocalizations {
 
   String get appBarButton {
     return Intl.message(
-      'Free Registration!',
+      'Join Free!',
       name: 'appBarButton',
       desc: 'Title for appBar Button',
       locale: localeName,
@@ -81,7 +81,7 @@ class AppLocalizations {
 
   String get compContribution {
     return Intl.message(
-      'Composite Contribution',
+      'Compound',
       name: 'compContribution',
       desc: 'Composite Contribution text',
       locale: localeName,
@@ -252,7 +252,7 @@ class AppLocalizations {
 
   String get compInterest {
     return Intl.message(
-      'Composite Interest',
+      'Compound',
       name: 'compInterest',
       desc: 'Composite Interest text',
       locale: localeName,
@@ -495,7 +495,7 @@ class AppLocalizations {
 
   String get infoInteresCompuesto {
     return Intl.message(
-      'Reinvest profit',
+      'Reinvest',
       name: 'infoInteresCompuesto',
       desc: 'infoInteresCompuesto text',
       locale: localeName,
@@ -534,6 +534,150 @@ class AppLocalizations {
       'https://mind.capital/en/attach/mind-capital-faq.pdf',
       name: 'faqUrl',
       desc: 'faqUrl text',
+      locale: localeName,
+    );
+  }
+
+  String get rateTitle {
+    return Intl.message(
+      'Rate this app',
+      name: 'rateTitle',
+      desc: 'rateTitle text',
+      locale: localeName,
+    );
+  }
+
+  String get rateMessage {
+    return Intl.message(
+      'If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn\'t take you more than one minute.',
+      name: 'rateMessage',
+      desc: 'rateMessage text',
+      locale: localeName,
+    );
+  }
+
+  String get rateButton {
+    return Intl.message(
+      'RATE',
+      name: 'rateButton',
+      desc: 'rateButton text',
+      locale: localeName,
+    );
+  }
+
+  String get rateNoButton {
+    return Intl.message(
+      'NO THANKS',
+      name: 'rateNoButton',
+      desc: 'rateNoButton text',
+      locale: localeName,
+    );
+  }
+
+  String get rateLaterButton {
+    return Intl.message(
+      'MAYBE LATER',
+      name: 'rateLaterButton',
+      desc: 'rateLaterButton text',
+      locale: localeName,
+    );
+  }
+
+  String get withdraw {
+    return Intl.message(
+      'Withdraw',
+      name: 'withdraw',
+      desc: 'Withdraw text',
+      locale: localeName,
+    );
+  }
+
+  String get simulate {
+    return Intl.message(
+      'Simulate',
+      name: 'simulate',
+      desc: 'simulate text',
+      locale: localeName,
+    );
+  }
+
+  String get grossTotal {
+    return Intl.message(
+      'Gross Total',
+      name: 'grossTotal',
+      desc: 'grossTotal text',
+      locale: localeName,
+    );
+  }
+
+  String get proSettings {
+    return Intl.message(
+      'Pro Settings',
+      name: 'proSettings',
+      desc: 'proSettings text',
+      locale: localeName,
+    );
+  }
+
+  String get minWithdraw {
+    return Intl.message(
+      'Minimun withdraw',
+      name: 'minWithdraw',
+      desc: 'minWithdraw text',
+      locale: localeName,
+    );
+  }
+
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: 'email text',
+      locale: localeName,
+    );
+  }
+
+  String get compliance {
+    return Intl.message(
+      'The simulation is only available to members of the BigRoi Club. Becoming a member is as easy as signing up for free at Mind.capital through the button on the top right.',
+      name: 'compliance',
+      desc: 'compliance text',
+      locale: localeName,
+    );
+  }
+
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
+      desc: 'send text',
+      locale: localeName,
+    );
+  }
+
+  String get complianceLoginSended {
+    return Intl.message(
+      'Email Sended',
+      name: 'complianceLoginSended',
+      desc: 'complianceLoginSended text',
+      locale: localeName,
+    );
+  }
+
+  String get login {
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: 'login text',
+      locale: localeName,
+    );
+  }
+
+  String get loginFail {
+    return Intl.message(
+      'Unauthorized Email. Contact admin.',
+      name: 'loginFail',
+      desc: 'loginFail text',
       locale: localeName,
     );
   }
