@@ -24,7 +24,7 @@ void main() async{
   runApp(MultiBlocProvider(
       providers: [  
         BlocProvider<CalculationBloc>(
-          create: (context) => CalculationBloc(),
+          create: (context) => CalculationBloc(preferences: _prefs),
         ),
         BlocProvider<ChartBloc>(
           create: (context) => ChartBloc(factoryDao),

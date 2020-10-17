@@ -192,23 +192,12 @@ class SimulatorResultWidget extends StatelessWidget {
 
   _interesCompuestoWidget(BuildContext context, bool _infoIntCompuesto,
       bool _interesCompuestoFlag) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Container(
+      margin: const EdgeInsets.all(8.0),
+      // padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          // Expanded(
-          //   flex: 14,
-          //   child: _interesCompuesto(
-          //     context,
-          //     _infoIntCompuesto,
-          //   ),
-          // ),
-          // Expanded(
-          //   flex: 1,
-          //   child: _interesCompuestoFlagWidget(context, _interesCompuestoFlag),
-          // ),
-      // ),
           _interesCompuesto(
             context,
             _infoIntCompuesto ),

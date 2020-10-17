@@ -106,3 +106,8 @@ class CambioRetiroEvent extends CalculationEvent{
   @override
   String toString() => 'CambioRetiroEvent Event';
 }
+
+class ResetDataEvent extends CalculationEvent{
+  @override
+  String toString() => 'ResetDataEvent Event';
+}

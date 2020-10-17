@@ -37,7 +37,8 @@ class LoginMobilePage extends StatelessWidget {
 
         return Container(
           decoration: BoxDecoration(border: Border.all(width: 3)),
-          margin: EdgeInsets.all(8.0),
+          // margin: EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0),
           child: ListView(
             children: [
               Form(

@@ -13,6 +13,16 @@ class CalculationInitState extends CalculationState {
   double aportacion;
   double aportacionFutura;
   double aportacionTotalReferido;
+  double referLevel1;
+  double referLevel2;
+  double referLevel3;
+  double referLevel4;
+  double referLevel5;
+  double referLevel6;
+  double referLevel7;
+  double referLevel8;
+  double referLevel9;
+  double referLevel10;
   TipoGanancias tipoGanancia;
   bool infoPlatform;
   bool infoIntCompuesto;
@@ -35,6 +45,16 @@ class CalculationInitState extends CalculationState {
       this.aportacion,
       this.aportacionFutura,
       this.aportacionTotalReferido,
+      this.referLevel1,
+      this.referLevel2,
+      this.referLevel3,
+      this.referLevel4,
+      this.referLevel5,
+      this.referLevel6,
+      this.referLevel7,
+      this.referLevel8,
+      this.referLevel9,
+      this.referLevel10,
       this.tipoGanancia,
       this.infoPlatform,
       this.interesCompuestoFlag,
@@ -84,6 +104,7 @@ class ReSimulationState extends CalculationState {
   double retiroTotal;
   bool overflow;
   bool showPro;
+  bool resetData;
 
   ReSimulationState(
       {this.aportacion,
@@ -117,7 +138,8 @@ class ReSimulationState extends CalculationState {
       this.retiro,
       this.retiroTotal,
       this.overflow,
-      this.showPro
+      this.showPro,
+      this.resetData = false,
       });
   @override
   String toString() => 'Calculation State';

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:mindcapitalsimulator/src/model/referal_manager.dart';
+import 'package:mindcapitalsimulator/src/repository/preferences_impl.dart';
 
 import 'event/calculation_event.dart';
 import 'state/calculation_state.dart';
@@ -7,6 +8,7 @@ import 'state/calculation_state.dart';
 enum TipoGanancias { diaria, semanal, mensual }
 
 class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
+  final PreferencesInterfaceImpl preferences;
   static const double PORC_PLATAFORMA = 35;
   static const double PORC_INVERSOR = 65;
   static const double MAX_APORTACION = 100000;
@@ -34,8 +36,11 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
   bool _overflow = false;
   bool _showPro = false;
 
+  CalculationBloc({this.preferences});
+
   @override
   CalculationState get initialState {
+    _getCockpitData();
     _calculaBeneficios(this._tipoGanancia);
 
     return CalculationInitState(
@@ -50,6 +55,16 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
         aportacionFutura: this._aportacionFutura,
         aportacionTotalReferido: this._referalManager.total,
         tipoGanancia: this._tipoGanancia,
+        referLevel1: _referalManager.level_1,
+        referLevel2: _referalManager.level_2,
+        referLevel3: _referalManager.level_3,
+        referLevel4: _referalManager.level_4,
+        referLevel5: _referalManager.level_5,
+        referLevel6: _referalManager.level_6,
+        referLevel7: _referalManager.level_7,
+        referLevel8: _referalManager.level_8,
+        referLevel9: _referalManager.level_9,
+        referLevel10: _referalManager.level_10,
         infoPlatform: this._infoPlatform,
         infoIntCompuesto: this._infoIntCompuesto,
         infoProfitButton: this._infoProfitButton,
@@ -73,40 +88,7 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
         // else{
         _resetBeneficios();
         _calculaBeneficios(_tipoGanancia);
-        yield ReSimulationState(
-            aportacion: _aportacion,
-            aportacionFutura: _aportacionFutura,
-            beneficiosTotales: _beneficiosTotales,
-            aportacionTotalReferido: _referalManager.total,
-            referLevel1: _referalManager.level_1,
-            referLevel2: _referalManager.level_2,
-            referLevel3: _referalManager.level_3,
-            referLevel4: _referalManager.level_4,
-            referLevel5: _referalManager.level_5,
-            referLevel6: _referalManager.level_6,
-            referLevel7: _referalManager.level_7,
-            referLevel8: _referalManager.level_8,
-            referLevel9: _referalManager.level_9,
-            referLevel10: _referalManager.level_10,
-            beneficiosPlataforma: _beneficiosPlataforma,
-            beneficiosNetos: _beneficiosNetos,
-            beneficiosNetosReferidos: _beneficiosNetosReferidos,
-            porcGanancias: _porcGanancias,
-            interesCompuestoFlag: _interesCompuestoFlag,
-            mesesCounter: _mesesCounter,
-            gananciaMin: _gananciaMin,
-            gananciaMax: _gananciaMax,
-            tipoGanancias: _tipoGanancia,
-            infoPlatform: _infoPlatform,
-            infoIntCompuesto: _infoIntCompuesto,
-            infoProfitButton: _infoProfitButton,
-            isExpanded: _isExpanded,
-            showRetiro: _showRetiro,
-            retiro: _retiro,
-            retiroTotal: _retiroTotal,
-            overflow: _overflow,
-            showPro: _showPro);
-        // }
+        yield _resimulationState();
       } catch (error) {
         yield error is CalculationStateError
             ? CalculationStateError(error.message)
@@ -152,40 +134,7 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
         }
 
         _calculaBeneficios(_tipoGanancia);
-        yield ReSimulationState(
-            aportacion: _aportacion,
-            aportacionFutura: _aportacionFutura,
-            beneficiosTotales: _beneficiosTotales,
-            aportacionTotalReferido: _referalManager.total,
-            referLevel1: _referalManager.level_1,
-            referLevel2: _referalManager.level_2,
-            referLevel3: _referalManager.level_3,
-            referLevel4: _referalManager.level_4,
-            referLevel5: _referalManager.level_5,
-            referLevel6: _referalManager.level_6,
-            referLevel7: _referalManager.level_7,
-            referLevel8: _referalManager.level_8,
-            referLevel9: _referalManager.level_9,
-            referLevel10: _referalManager.level_10,
-            beneficiosPlataforma: _beneficiosPlataforma,
-            beneficiosNetos: _beneficiosNetos,
-            beneficiosNetosReferidos: _beneficiosNetosReferidos,
-            porcGanancias: _porcGanancias,
-            interesCompuestoFlag: _interesCompuestoFlag,
-            mesesCounter: _mesesCounter,
-            gananciaMin: _gananciaMin,
-            gananciaMax: _gananciaMax,
-            tipoGanancias: _tipoGanancia,
-            infoPlatform: _infoPlatform,
-            infoIntCompuesto: _infoIntCompuesto,
-            infoProfitButton: _infoProfitButton,
-            isExpanded: _isExpanded,
-            showRetiro: _showRetiro,
-            retiro: _retiro,
-            retiroTotal: _retiroTotal,
-            overflow: _overflow,
-            showPro: _showPro);
-        // }
+        yield _resimulationState();
       } catch (error) {
         yield error is CalculationStateError
             ? CalculationStateError(error.message)
@@ -193,109 +142,13 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
       }
     } else if (event is CambioInfoPlatformEvent) {
       this._infoPlatform = !this._infoPlatform;
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is CambioInfoIntCompuestoEvent) {
       this._infoIntCompuesto = !this._infoIntCompuesto;
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is CambioInfoProfitEvent) {
       this._infoProfitButton = !this._infoProfitButton;
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is TipoGananciaEvent) {
       this._tipoGanancia = event.tipoGanancia;
       this._showRetiro = false;
@@ -324,258 +177,34 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
       }
       _resetBeneficios();
       _calculaBeneficios(this._tipoGanancia);
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is PorcGnanaciasEvent) {
       this._porcGanancias = event.porcGanancias;
       _resetBeneficios();
       _calculaBeneficios(this._tipoGanancia);
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is FlagInteresCompuestoEvent) {
       _interesCompuestoFlag = !_interesCompuestoFlag;
       _resetBeneficios();
       _calculaBeneficios(_tipoGanancia);
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is CambioMesesCounterEvent) {
       _mesesCounter = event.mesesCounter;
       _isWithdrawExecuted = false;
       _resetBeneficios();
       _calculaBeneficios(_tipoGanancia);
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is ResetBeneficiosEvent) {
       _resetBeneficios();
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is CopyFutureContributionEvent) {
       _aportacion = _aportacionFutura;
       _resetBeneficios();
       _calculaBeneficios(_tipoGanancia);
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is ExpandPanelEvent) {
       _isExpanded = event.isExpanded;
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is CambioRetiroEvent) {
       _retiro = event.retiro;
       // if (_retiro == 0.0)
@@ -584,76 +213,72 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
       //   _showRetiro = true;
       _resetBeneficios();
       _calculaBeneficios(_tipoGanancia);
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+      yield _resimulationState();
     } else if (event is FlagProSettingsEvent) {
       _showPro = !_showPro;
-      
-      yield ReSimulationState(
-          aportacion: _aportacion,
-          aportacionFutura: _aportacionFutura,
-          beneficiosTotales: _beneficiosTotales,
-          aportacionTotalReferido: _referalManager.total,
-          referLevel1: _referalManager.level_1,
-          referLevel2: _referalManager.level_2,
-          referLevel3: _referalManager.level_3,
-          referLevel4: _referalManager.level_4,
-          referLevel5: _referalManager.level_5,
-          referLevel6: _referalManager.level_6,
-          referLevel7: _referalManager.level_7,
-          referLevel8: _referalManager.level_8,
-          referLevel9: _referalManager.level_9,
-          referLevel10: _referalManager.level_10,
-          beneficiosPlataforma: _beneficiosPlataforma,
-          beneficiosNetos: _beneficiosNetos,
-          beneficiosNetosReferidos: _beneficiosNetosReferidos,
-          porcGanancias: _porcGanancias,
-          interesCompuestoFlag: _interesCompuestoFlag,
-          mesesCounter: _mesesCounter,
-          gananciaMin: _gananciaMin,
-          gananciaMax: _gananciaMax,
-          tipoGanancias: _tipoGanancia,
-          infoPlatform: _infoPlatform,
-          infoIntCompuesto: _infoIntCompuesto,
-          infoProfitButton: _infoProfitButton,
-          isExpanded: _isExpanded,
-          showRetiro: _showRetiro,
-          retiro: _retiro,
-          retiroTotal: _retiroTotal,
-          overflow: _overflow,
-          showPro: _showPro);
+
+      yield _resimulationState();
+    } else if (event is ResetDataEvent) {
+      _resetData();
+      _resetCockpitData();
+      _resetBeneficios();
+      yield _resimulationState(resetData: true);
     }
+  }
+
+  CalculationState _resimulationState({bool resetData=false}) {
+    this.preferences.saveCockpitData(
+          _aportacion,
+          _porcGanancias,
+          _gananciaMin,
+          _gananciaMax,
+          _retiro,
+          _tipoGanancia.toString(),
+          _referalManager.level_1,
+          _referalManager.level_2,
+          _referalManager.level_3,
+          _referalManager.level_4,
+          _referalManager.level_5,
+          _referalManager.level_6,
+          _referalManager.level_7,
+          _referalManager.level_8,
+          _referalManager.level_9,
+          _referalManager.level_10,
+        );
+    return ReSimulationState(
+        aportacion: _aportacion,
+        aportacionFutura: _aportacionFutura,
+        beneficiosTotales: _beneficiosTotales,
+        aportacionTotalReferido: _referalManager.total,
+        referLevel1: _referalManager.level_1,
+        referLevel2: _referalManager.level_2,
+        referLevel3: _referalManager.level_3,
+        referLevel4: _referalManager.level_4,
+        referLevel5: _referalManager.level_5,
+        referLevel6: _referalManager.level_6,
+        referLevel7: _referalManager.level_7,
+        referLevel8: _referalManager.level_8,
+        referLevel9: _referalManager.level_9,
+        referLevel10: _referalManager.level_10,
+        beneficiosPlataforma: _beneficiosPlataforma,
+        beneficiosNetos: _beneficiosNetos,
+        beneficiosNetosReferidos: _beneficiosNetosReferidos,
+        porcGanancias: _porcGanancias,
+        interesCompuestoFlag: _interesCompuestoFlag,
+        mesesCounter: _mesesCounter,
+        gananciaMin: _gananciaMin,
+        gananciaMax: _gananciaMax,
+        tipoGanancias: _tipoGanancia,
+        infoPlatform: _infoPlatform,
+        infoIntCompuesto: _infoIntCompuesto,
+        infoProfitButton: _infoProfitButton,
+        isExpanded: _isExpanded,
+        showRetiro: _showRetiro,
+        retiro: _retiro,
+        retiroTotal: _retiroTotal,
+        overflow: _overflow,
+        showPro: _showPro,
+        resetData: resetData);
   }
 
   _calculaBeneficios(TipoGanancias tipoGanancias) {
@@ -708,7 +333,6 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
     _beneficiosNetos =
         _beneficiosNetos + beneficiosNetos + beneficiosNetosReferidos;
 
-    //TODO: Crear una clase InteresCompuesto que tenga en cuenta los 2 días en que no genera beneficios las nuevas aportaciones
     if (_executeCompound(_interesCompuestoFlag)) {
       if (_executeWithdraw(
           _showRetiro, _beneficiosNetos, _retiro, _isWithdrawExecuted)) {
@@ -771,6 +395,56 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
       }
     } else
       return true;
+  }
+
+  _getCockpitData(){
+    _aportacion = this.preferences.getDouble('aportacion');
+    _retiro = this.preferences.getDouble('retiro');
+    _porcGanancias = this.preferences.getDouble('porcGanancias');
+    _gananciaMin = this.preferences.getDouble('gananciaMin');
+    _gananciaMax = this.preferences.getDouble('gananciaMax');
+    String tipoGanancia = this.preferences.getString('tipoGanancia');
+    _tipoGanancia = _tipoGananciaFromString(tipoGanancia);
+    _referalManager.level_1 = this.preferences.getDouble('referal1');
+    _referalManager.level_2 = this.preferences.getDouble('referal2');
+    _referalManager.level_3 = this.preferences.getDouble('referal3');
+    _referalManager.level_4 = this.preferences.getDouble('referal4');
+    _referalManager.level_5 = this.preferences.getDouble('referal5');
+    _referalManager.level_6 = this.preferences.getDouble('referal6');
+    _referalManager.level_7 = this.preferences.getDouble('referal7');
+    _referalManager.level_8 = this.preferences.getDouble('referal8');
+    _referalManager.level_9 = this.preferences.getDouble('referal9');
+    _referalManager.level_10 = this.preferences.getDouble('referal10');
+  }
+
+  TipoGanancias _tipoGananciaFromString(String value) {
+    TipoGanancias tipoGanancia;
+    switch (value) {
+      case 'TipoGanancias.mensual':
+        tipoGanancia = TipoGanancias.mensual;
+        break;
+      case 'TipoGanancias.semanal':
+        tipoGanancia = TipoGanancias.semanal;
+        break;
+      default:
+        tipoGanancia = TipoGanancias.diaria;
+    }
+
+    return tipoGanancia;
+  }
+
+  _resetData() {
+    _aportacion = 0.0;
+    _retiro = 0.0;
+    _referalManager.clear();
+    _porcGanancias = 1.0;
+    _gananciaMin = 0.5;
+    _gananciaMax = 1.5;
+    _tipoGanancia = TipoGanancias.diaria;
+  }
+
+  _resetCockpitData() {
+    this.preferences.resetCockpitData();
   }
 
   _resetBeneficios() {

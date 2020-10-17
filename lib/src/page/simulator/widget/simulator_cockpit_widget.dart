@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mindcapitalsimulator/src/bloc/calculation_bloc.dart';
 import 'package:mindcapitalsimulator/src/bloc/event/calculation_event.dart';
 import 'package:mindcapitalsimulator/src/bloc/event/home_event.dart';
@@ -54,7 +55,7 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
     return BlocBuilder<CalculationBloc, CalculationState>(
         builder: (BuildContext context, state) {
       if (state is CalculationInitState) {
-        // _aportacion = state.aportacion;
+        _aportacionController.text = state.aportacion.toStringAsFixed(2);
         // _aportacionFutura = state.aportacionFutura;
         _aportacionTotalReferido = state.aportacionTotalReferido;
         _beneficiosTotales = state.beneficiosTotales;
@@ -69,9 +70,9 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
         _mesesCounter = state.mesesCounter;
 
         // _aportacionController.text = _aportacion.toStringAsFixed(0);
-        _aportacionController.text == ''
-            ? _aportacionController.text = '0'
-            : _aportacionController.text = '';
+        // _aportacionController.text == ''
+        //     ? _aportacionController.text = '0'
+        //     : _aportacionController.text = '';
 
         _retiroController.text == ''
             ? _retiroController.text = '0'
@@ -79,22 +80,38 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
         // _retiroController.text = state.retiro.toStringAsExponential(0);
 
         _isExpanded = state.isExpanded;
-        _referalLevel1Controller.text = '0';
-        _referalLevel2Controller.text = '0';
-        _referalLevel3Controller.text = '0';
-        _referalLevel4Controller.text = '0';
-        _referalLevel5Controller.text = '0';
-        _referalLevel6Controller.text = '0';
-        _referalLevel7Controller.text = '0';
-        _referalLevel8Controller.text = '0';
-        _referalLevel9Controller.text = '0';
-        _referalLevel10Controller.text = '0';
+        _referalLevel1Controller.text = state.referLevel1.toStringAsFixed(0);
+        _referalLevel2Controller.text = state.referLevel2.toStringAsFixed(0);
+        _referalLevel3Controller.text = state.referLevel3.toStringAsFixed(0);
+        _referalLevel4Controller.text = state.referLevel4.toStringAsFixed(0);
+        _referalLevel5Controller.text = state.referLevel5.toStringAsFixed(0);
+        _referalLevel6Controller.text = state.referLevel6.toStringAsFixed(0);
+        _referalLevel7Controller.text = state.referLevel7.toStringAsFixed(0);
+        _referalLevel8Controller.text = state.referLevel8.toStringAsFixed(0);
+        _referalLevel9Controller.text = state.referLevel9.toStringAsFixed(0);
+        _referalLevel10Controller.text = state.referLevel10.toStringAsFixed(0);
       } else if (state is ReSimulationState) {
+        if(state.resetData) {
+          _aportacionController.clear();
+          _retiroController.clear();
+          _referalLevel1Controller.clear();
+          _referalLevel2Controller.clear();
+          _referalLevel3Controller.clear();
+          _referalLevel4Controller.clear();
+          _referalLevel5Controller.clear();
+          _referalLevel6Controller.clear();
+          _referalLevel7Controller.clear();
+          _referalLevel8Controller.clear();
+          _referalLevel9Controller.clear();
+          _referalLevel10Controller.clear();
+        }
+
         if (_aportacionController.text.compareTo('') == 0)
           _aportacionController.text = state.aportacion.toStringAsFixed(0);
         _aportacionTotalReferido = state.aportacionTotalReferido;
 
-        if (_retiroController.text.compareTo('') == 0) // || state.retiro == 0.0)
+        if (_retiroController.text.compareTo('') ==
+            0) // || state.retiro == 0.0)
           _retiroController.text = state.retiro.toStringAsFixed(0);
 
         _showRetiro = state.showRetiro;
@@ -135,6 +152,7 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
         _gananciaMax = state.gananciaMax;
         _tipoGanancia = state.tipoGanancias;
         _infoPlatform = state.infoPlatform;
+
       } else if (state is CalculationStateError) {
         CustomSnackBar().show(context: context, message: state.message);
       }
@@ -218,12 +236,11 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
 
   _withdraw(BuildContext context, bool showPro, bool showWithdraw,
       TextEditingController withdrawController) {
-
     return Visibility(
       visible: showWithdraw && showPro,
       child: Form(
         key: _withdrawKey,
-              child: TextFormField(
+        child: TextFormField(
           controller: withdrawController,
           style: TextStyle(fontSize: 20.0),
           decoration: InputDecoration(
@@ -231,11 +248,10 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
           keyboardType: TextInputType.number,
           onChanged: (value) {
             double withdraw = double.parse(value);
-            if (!_withdrawKey.currentState.validate())
-              withdraw = 0.0;
-          
+            if (!_withdrawKey.currentState.validate()) withdraw = 0.0;
+
             BlocProvider.of<CalculationBloc>(context)
-                  .add(CambioRetiroEvent(withdraw));
+                .add(CambioRetiroEvent(withdraw));
           },
           onTap: () {
             withdrawController.text.startsWith('0')
@@ -243,12 +259,12 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
                 : withdrawController.text = withdrawController.text;
           },
           validator: (value) {
-          double withdraw = double.parse(value);
-          if (withdraw < 50) {
-            return '${AppLocalizations.of(context).minWithdraw} 50\$';
-          }
-          return null;
-        },
+            double withdraw = double.parse(value);
+            if (withdraw < 50) {
+              return '${AppLocalizations.of(context).minWithdraw} 50\$';
+            }
+            return null;
+          },
         ),
       ),
     );
@@ -266,9 +282,17 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
             activeColor: Colors.green,
             value: _showPro,
             onChanged: (value) {
-              BlocProvider.of<CalculationBloc>(context).add(FlagProSettingsEvent());
+              BlocProvider.of<CalculationBloc>(context)
+                  .add(FlagProSettingsEvent());
             },
           ),
+        ),
+        IconButton(
+          icon: Icon(FontAwesomeIcons.trash, color: Colors.blue,),
+          tooltip: 'Borrar Datos',
+          onPressed: () {
+            BlocProvider.of<CalculationBloc>(context).add(ResetDataEvent());
+          },
         ),
       ],
     );
