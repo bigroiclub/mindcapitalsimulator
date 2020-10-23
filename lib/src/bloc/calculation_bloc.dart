@@ -398,23 +398,28 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
   }
 
   _getCockpitData(){
-    _aportacion = this.preferences.getDouble('aportacion');
-    _retiro = this.preferences.getDouble('retiro');
-    _porcGanancias = this.preferences.getDouble('porcGanancias');
-    _gananciaMin = this.preferences.getDouble('gananciaMin');
-    _gananciaMax = this.preferences.getDouble('gananciaMax');
+    _aportacion = _getDouble('aportacion');
+    _retiro = _getDouble('retiro');
+    _porcGanancias = _getDouble('porcGanancias');
+    _gananciaMin = _getDouble('gananciaMin');
+    _gananciaMax = _getDouble('gananciaMax');
     String tipoGanancia = this.preferences.getString('tipoGanancia');
-    _tipoGanancia = _tipoGananciaFromString(tipoGanancia);
-    _referalManager.level_1 = this.preferences.getDouble('referal1');
-    _referalManager.level_2 = this.preferences.getDouble('referal2');
-    _referalManager.level_3 = this.preferences.getDouble('referal3');
-    _referalManager.level_4 = this.preferences.getDouble('referal4');
-    _referalManager.level_5 = this.preferences.getDouble('referal5');
-    _referalManager.level_6 = this.preferences.getDouble('referal6');
-    _referalManager.level_7 = this.preferences.getDouble('referal7');
-    _referalManager.level_8 = this.preferences.getDouble('referal8');
-    _referalManager.level_9 = this.preferences.getDouble('referal9');
-    _referalManager.level_10 = this.preferences.getDouble('referal10');
+    if(tipoGanancia!=null)
+      _tipoGanancia = _tipoGananciaFromString(tipoGanancia);
+    _referalManager.level_1 = _getDouble('referal1');
+    _referalManager.level_2 = _getDouble('referal2');
+    _referalManager.level_3 = _getDouble('referal3');
+    _referalManager.level_4 = _getDouble('referal4');
+    _referalManager.level_5 = _getDouble('referal5');
+    _referalManager.level_6 = _getDouble('referal6');
+    _referalManager.level_7 = _getDouble('referal7');
+    _referalManager.level_8 = _getDouble('referal8');
+    _referalManager.level_9 = _getDouble('referal9');
+    _referalManager.level_10 = _getDouble('referal10');
+  }
+
+  double _getDouble(String key) {
+    return this.preferences.getDouble('referal1') ?? 0.0;
   }
 
   TipoGanancias _tipoGananciaFromString(String value) {
