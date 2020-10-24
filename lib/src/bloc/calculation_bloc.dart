@@ -419,7 +419,7 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
   }
 
   double _getDouble(String key) {
-    return this.preferences.getDouble('referal1') ?? 0.0;
+    return this.preferences.getDouble(key) ?? 0.0;
   }
 
   TipoGanancias _tipoGananciaFromString(String value) {
