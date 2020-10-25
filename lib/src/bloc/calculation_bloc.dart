@@ -71,6 +71,7 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
         interesCompuestoFlag: this._interesCompuestoFlag,
         mesesCounter: this._mesesCounter,
         isExpanded: _isExpanded,
+        showRetiro: _showRetiro,
         retiro: _retiro,
         retiroTotal: _retiroTotal,
         overflow: _overflow);
@@ -232,6 +233,7 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
           _porcGanancias,
           _gananciaMin,
           _gananciaMax,
+          _showRetiro,
           _retiro,
           _tipoGanancia.toString(),
           _referalManager.level_1,
@@ -399,6 +401,7 @@ class CalculationBloc extends Bloc<CalculationEvent, CalculationState> {
 
   _getCockpitData(){
     _aportacion = _getDouble('aportacion');
+    _showRetiro = this.preferences.getBool('showRetiro') ?? false;
     _retiro = _getDouble('retiro');
     _porcGanancias = _getDouble('porcGanancias');
     _gananciaMin = _getDouble('gananciaMin');

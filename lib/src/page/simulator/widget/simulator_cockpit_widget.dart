@@ -73,11 +73,11 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
         // _aportacionController.text == ''
         //     ? _aportacionController.text = '0'
         //     : _aportacionController.text = '';
-
-        _retiroController.text == ''
-            ? _retiroController.text = '0'
-            : _retiroController.text = '';
-        // _retiroController.text = state.retiro.toStringAsExponential(0);
+        _showRetiro = state.showRetiro;
+        // _retiroController.text == ''
+        //     ? _retiroController.text = '0'
+        //     : _retiroController.text = '';
+        _retiroController.text = state.retiro.toStringAsFixed(0);
 
         _isExpanded = state.isExpanded;
         _referalLevel1Controller.text = state.referLevel1.toStringAsFixed(0);

@@ -43,6 +43,7 @@ class PreferencesInterfaceImpl extends Preferences {
     _prefs.remove('porcGanancias');
     _prefs.remove('gananciaMin');
     _prefs.remove('gananciaMax');
+    _prefs.remove('showRetiro');
     _prefs.remove('retiro');
     _prefs.remove('tipoGanancia');
     _prefs.remove('referal1');
@@ -59,12 +60,13 @@ class PreferencesInterfaceImpl extends Preferences {
 
   @override
   void saveCockpitData(double aportacion, double porcGanancias, double gananciaMin, double gananciaMax,
-  double retiro, String tipoGanancia, double referal1, double referal2, double referal3, double referal4,
+  bool showRetiro, double retiro, String tipoGanancia, double referal1, double referal2, double referal3, double referal4,
   double referal5, double referal6, double referal7, double referal8, double referal9, double referal10) {
     _prefs.setDouble('aportacion', aportacion);
     _prefs.setDouble('porcGanancias', porcGanancias);
     _prefs.setDouble('gananciaMin', gananciaMin);
     _prefs.setDouble('gananciaMax', gananciaMax);
+    _prefs.setBool('showRetiro', showRetiro);
     _prefs.setDouble('retiro', retiro);
     _prefs.setString('tipoGanancia', tipoGanancia);
     _prefs.setDouble('referal1', referal1);
@@ -82,5 +84,10 @@ class PreferencesInterfaceImpl extends Preferences {
   @override
   double getDouble(String key) {
     return _prefs.getDouble(key);
+  }
+
+  @override
+  bool getBool(String key) {
+    return _prefs.getBool(key);
   }
 }

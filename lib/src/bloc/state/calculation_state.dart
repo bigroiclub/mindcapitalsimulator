@@ -30,6 +30,7 @@ class CalculationInitState extends CalculationState {
   int mesesCounter;
   bool infoProfitButton;
   bool isExpanded;
+  bool showRetiro;
   double retiro;
   double retiroTotal;
   bool overflow;
@@ -62,6 +63,7 @@ class CalculationInitState extends CalculationState {
       this.infoIntCompuesto,
       this.infoProfitButton,
       this.isExpanded,
+      this.showRetiro,
       this.retiro,
       this.retiroTotal,
       this.overflow
