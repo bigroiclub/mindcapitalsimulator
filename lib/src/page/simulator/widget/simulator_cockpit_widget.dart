@@ -91,7 +91,7 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
         _referalLevel9Controller.text = state.referLevel9.toStringAsFixed(0);
         _referalLevel10Controller.text = state.referLevel10.toStringAsFixed(0);
       } else if (state is ReSimulationState) {
-        if(state.resetData) {
+        if (state.resetData) {
           _aportacionController.clear();
           _retiroController.clear();
           _referalLevel1Controller.clear();
@@ -152,7 +152,6 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
         _gananciaMax = state.gananciaMax;
         _tipoGanancia = state.tipoGanancias;
         _infoPlatform = state.infoPlatform;
-
       } else if (state is CalculationStateError) {
         CustomSnackBar().show(context: context, message: state.message);
       }
@@ -272,27 +271,47 @@ class _SimulatorCockpitWidgetState extends State<SimulatorCockpitWidget> {
 
   _showProButton(BuildContext context, bool _showPro) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      // mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text(AppLocalizations.of(context).proSettings),
-        Container(
-          alignment: Alignment.centerRight,
-          child: Switch(
-            inactiveThumbColor: Colors.blue,
-            activeColor: Colors.green,
-            value: _showPro,
-            onChanged: (value) {
-              BlocProvider.of<CalculationBloc>(context)
-                  .add(FlagProSettingsEvent());
-            },
+        Expanded(
+          flex: 1,
+          child: Container(
+            alignment: Alignment.centerLeft,
+            child: IconButton(
+              icon: Icon(
+                FontAwesomeIcons.trash,
+                color: Colors.blue,
+              ),
+              tooltip: 'Borrar Datos',
+              onPressed: () {
+                BlocProvider.of<CalculationBloc>(context).add(ResetDataEvent());
+              },
+            ),
           ),
         ),
-        IconButton(
-          icon: Icon(FontAwesomeIcons.trash, color: Colors.blue,),
-          tooltip: 'Borrar Datos',
-          onPressed: () {
-            BlocProvider.of<CalculationBloc>(context).add(ResetDataEvent());
-          },
+        Expanded(
+          flex: 2,
+          child: Container(
+            alignment: Alignment.centerRight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(AppLocalizations.of(context).proSettings),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: Switch(
+                    inactiveThumbColor: Colors.blue,
+                    activeColor: Colors.green,
+                    value: _showPro,
+                    onChanged: (value) {
+                      BlocProvider.of<CalculationBloc>(context)
+                          .add(FlagProSettingsEvent());
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );
