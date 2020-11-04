@@ -36,7 +36,7 @@ class AppLocalizations {
 
   String get title {
     return Intl.message(
-      'Mind.capital Simulator',
+      'MC Simulator',
       name: 'title',
       desc: 'Title for the App application',
       locale: localeName,
