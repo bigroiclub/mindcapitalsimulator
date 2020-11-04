@@ -87,7 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "septemberShort" : MessageLookupByLibrary.simpleMessage("SEP"),
     "simulate" : MessageLookupByLibrary.simpleMessage("Simulate"),
     "simulator" : MessageLookupByLibrary.simpleMessage("Simulator"),
-    "title" : MessageLookupByLibrary.simpleMessage("Mind.capital Simulator"),
+    "title" : MessageLookupByLibrary.simpleMessage("MC Simulator"),
     "total" : MessageLookupByLibrary.simpleMessage("Total"),
     "trackRecord" : MessageLookupByLibrary.simpleMessage("Track Record"),
     "weekAverage" : MessageLookupByLibrary.simpleMessage("Week Historical Average"),

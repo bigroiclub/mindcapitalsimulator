@@ -46,7 +46,7 @@ class TrackRecordDesktopPage extends StatelessWidget {
   _chartWidget(BuildContext context, List<ChartSpot> chartSpots) {
     return Container(
       alignment: Alignment.center,
-      // padding: EdgeInsets.all(30.0),
+      padding: EdgeInsets.all(20.0),
       child: LineChart(mainData(context, chartSpots),
           swapAnimationDuration: Duration(milliseconds: 250)),
     );
