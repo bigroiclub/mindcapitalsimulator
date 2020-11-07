@@ -407,6 +407,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "compliance2_1": "Cuando te hayas dado de alta a través de nosotros, ya formarás parte de BigRoi Club.",
+  "@compliance2_1": {
+    "description": "compliance2_1 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compliance2_2": "El proceso de validación tarda entre 24/48h.",
+  "@compliance2_2": {
+    "description": "compliance2_2 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compliance3": "Introduce el correo que has utilizado en el proceso de alta para acceder a la app.",
+  "@compliance3": {
+    "description": "compliance3 text",
+    "type": "text",
+    "placeholders": {}
+  },
   "send": "Enviar",
   "@send": {
     "description": "send text",

@@ -488,6 +488,12 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "steps",
+      "rootUri": "file:///Users/Fran/flutter/.pub-cache/hosted/pub.dartlang.org/steps-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "stream_channel",
       "rootUri": "file:///Users/Fran/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0-nullsafety.1",
       "packageUri": "lib/",
@@ -584,7 +590,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-10-25T14:53:43.363362Z",
+  "generated": "2020-11-07T21:29:03.127438Z",
   "generator": "pub",
   "generatorVersion": "2.11.0-213.1.beta"
 }

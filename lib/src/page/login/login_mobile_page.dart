@@ -8,6 +8,7 @@ import 'package:mindcapitalsimulator/src/bloc/login_bloc.dart';
 import 'package:mindcapitalsimulator/src/bloc/state/login_state.dart';
 import 'package:mindcapitalsimulator/src/locale/locales.dart';
 import 'package:mindcapitalsimulator/src/widget/custom_button.dart';
+import 'package:steps/steps.dart';
 
 class LoginMobilePage extends StatelessWidget {
   @override
@@ -21,62 +22,108 @@ class LoginMobilePage extends StatelessWidget {
         } else if (state is LoginStateError) {
           _emailTextController.clear();
           SchedulerBinding.instance.addPostFrameCallback((_) {
-                Flushbar(
-                  duration: Duration(seconds: 3),
-                  icon: Icon(FontAwesomeIcons.user),
-                  message: state.message,
-                  backgroundGradient: LinearGradient(
-                    colors: [
-                      Color.fromRGBO(242, 0, 83, 1),
-                      Color.fromRGBO(242, 0, 83, 0.5)
-                    ],
-                  ),
-                )..show(context);
-              });
+            Flushbar(
+              duration: Duration(seconds: 3),
+              icon: Icon(FontAwesomeIcons.user),
+              message: state.message,
+              backgroundGradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(242, 0, 83, 1),
+                  Color.fromRGBO(242, 0, 83, 0.5)
+                ],
+              ),
+            )..show(context);
+          });
         }
 
         return Container(
-          decoration: BoxDecoration(border: Border.all(width: 3)),
-          // margin: EdgeInsets.all(8.0),
-          padding: EdgeInsets.all(8.0),
-          child: ListView(
-            children: [
-              Form(
-                child: TextFormField(
-                  controller: _emailTextController,
-                  style:
-                      TextStyle(fontSize: 20.0, backgroundColor: Colors.white),
-                  decoration: InputDecoration(
-                      labelText: '${AppLocalizations.of(context).email}',
-                      hoverColor: Colors.white),
-                  keyboardType: TextInputType.emailAddress,
-                  onChanged: (value) {
-                    BlocProvider.of<LoginBloc>(context)
-                        .add(EmailChangedEvent(value));
-                  },
-                  onTap: () {},
-                  validator: (value) {
-                    return null;
-                  },
+          alignment: Alignment.topCenter,
+          child: Steps(
+            direction: Axis.vertical,
+            size: 20.0,
+            path: {'color': Colors.lightBlue.shade200, 'width': 3.0},
+            steps: [
+              {
+                'color': Colors.white,
+                'background': Colors.lightBlue.shade700,
+                'label': '1',
+                'content': Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      AppLocalizations.of(context).compliance,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 4.0,),
-              CustomButton(
-                child: Text(AppLocalizations.of(context).login,
-                    style: TextStyle(color: Colors.white)),
-                onPressed: () {
-                  BlocProvider.of<LoginBloc>(context)
-                      .add(SignInEvent());
-                },
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Text(
-                AppLocalizations.of(context).compliance,
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 20.0),
-              ),
+              },
+              {
+                'color': Colors.white,
+                'background': Colors.lightBlue.shade200,
+                'label': '2',
+                'content': Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      AppLocalizations.of(context).compliance2_1,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                    Text(
+                      AppLocalizations.of(context).compliance2_2,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(fontSize: 12.0),
+                    ),
+                  ],
+                )
+              },
+              {
+                'color': Colors.white,
+                'background': Colors.lightBlue.shade200,
+                'label': '3',
+                'content': Column(
+                  children: <Widget>[
+                    Text(
+                      AppLocalizations.of(context).compliance3,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                    Form(
+                      child: TextFormField(
+                        controller: _emailTextController,
+                        style: TextStyle(
+                            fontSize: 20.0, backgroundColor: Colors.white),
+                        decoration: InputDecoration(
+                            labelText:
+                                '${AppLocalizations.of(context).email}',
+                            hoverColor: Colors.white),
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: (value) {
+                          BlocProvider.of<LoginBloc>(context)
+                              .add(EmailChangedEvent(value));
+                        },
+                        onTap: () {},
+                        validator: (value) {
+                          return null;
+                        },
+                      ),
+                    ),
+                    Container(
+                      padding:
+                          EdgeInsets.only(top: 40.0, left: 40.0, right: 40.0),
+                      child: CustomButton(
+                        child: Text(AppLocalizations.of(context).login,
+                            style: TextStyle(color: Colors.white)),
+                        onPressed: () {
+                          BlocProvider.of<LoginBloc>(context)
+                              .add(SignInEvent());
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              }
             ],
           ),
         );

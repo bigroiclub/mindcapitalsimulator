@@ -639,9 +639,36 @@ class AppLocalizations {
 
   String get compliance {
     return Intl.message(
-      'The simulation is only available to members of the BigRoi Club. Becoming a member is as easy as signing up for free at Mind.capital through the button on the top right.',
+      'Simulation is only available to members of BigRoi Club. Becoming a member is as easy as signing up for free at Mind.capital through the button on the top right.',
       name: 'compliance',
       desc: 'compliance text',
+      locale: localeName,
+    );
+  }
+
+  String get compliance2_1 {
+    return Intl.message(
+      'Once you have join through us, you will already be part of BigRoi Club.',
+      name: 'compliance2_1',
+      desc: 'compliance2_1 text',
+      locale: localeName,
+    );
+  }
+
+  String get compliance2_2 {
+    return Intl.message(
+      'Validation process takes between 24/48h.',
+      name: 'compliance2_2',
+      desc: 'compliance2_2 text',
+      locale: localeName,
+    );
+  }
+
+  String get compliance3 {
+    return Intl.message(
+      'Write the email you used in registration process to access the app.',
+      name: 'compliance3',
+      desc: 'compliance3 text',
       locale: localeName,
     );
   }

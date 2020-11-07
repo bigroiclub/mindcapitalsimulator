@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-11-04T20:20:56.901435",
+  "@@last_modified": "2020-11-07T22:13:56.196949",
   "title": "MC Simulator",
   "@title": {
     "description": "Title for the App application",
@@ -402,9 +402,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "compliance": "The simulation is only available to members of the BigRoi Club. Becoming a member is as easy as signing up for free at Mind.capital through the button on the top right.",
+  "compliance": "Simulation is only available to members of BigRoi Club. Becoming a member is as easy as signing up for free at Mind.capital through the button on the top right.",
   "@compliance": {
     "description": "compliance text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compliance2_1": "Once you have join through us, you will already be part of BigRoi Club.",
+  "@compliance2_1": {
+    "description": "compliance2_1 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compliance2_2": "Validation process takes between 24/48h.",
+  "@compliance2_2": {
+    "description": "compliance2_2 text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "compliance3": "Write the email you used in registration process to access the app.",
+  "@compliance3": {
+    "description": "compliance3 text",
     "type": "text",
     "placeholders": {}
   },
